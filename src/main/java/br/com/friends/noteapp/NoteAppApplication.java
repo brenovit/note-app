@@ -31,4 +31,5 @@ public class NoteAppApplication {
 		localValidatorFactoryBean.setValidationMessageSource(messageSource());
 		return localValidatorFactoryBean;
 	}
+	
 }

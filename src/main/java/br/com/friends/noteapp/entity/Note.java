@@ -2,6 +2,7 @@ package br.com.friends.noteapp.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ public class Note {
 	private String color;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable=true, updatable=true)
 	private Date lastModificatedDate;
 	//private User user;
 	
