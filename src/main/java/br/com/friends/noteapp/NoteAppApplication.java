@@ -1,4 +1,4 @@
-package br.com.friends.note_app;
+package br.com.friends.noteapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

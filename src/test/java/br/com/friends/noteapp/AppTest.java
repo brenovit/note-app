@@ -1,4 +1,4 @@
-package br.com.friends.note_app;
+package br.com.friends.noteapp;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
