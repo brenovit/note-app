@@ -1,19 +1,26 @@
 package br.com.friends.noteapp.entity;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Entity
+@Table(name="T_USER")
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 	
 	@Id
 	@GeneratedValue
-	private long id;
-	
+	private UUID id;	
 	private String name;
 	private String login;
 	private String password;
