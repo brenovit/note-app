@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class User {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue	
 	private UUID id;	
 	private String name;
 	private String login;

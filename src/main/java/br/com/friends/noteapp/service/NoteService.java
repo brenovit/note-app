@@ -21,5 +21,13 @@ public class NoteService {
 	public Note create(Note note) {
 		return noteRepository.save(note);
 	}
+
+	public void delete(long id) {
+		noteRepository.deleteById(id);
+	}
+
+	public Note update(Note note) {
+		return noteRepository.save(note);
+	}
 	
 }

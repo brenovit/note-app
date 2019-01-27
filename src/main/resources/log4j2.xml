@@ -3,10 +3,10 @@
 
 	<Properties>
 		<Property name="FILE_NAME">
-			/app/log/SpringAPI/SpringAPI.log
+			/app/log/NotaAqui/NotaAqui.log
 		</Property>
 		<Property name="FILE_PATTERN">
-			/app/log/SpringAPI/old/%d{yyyy-MM-dd}.SpringAPI.log
+			/app/log/NotaAqui/old/%d{yyyy-MM-dd}.NotaAqui.log
 		</Property>
 		<Property name="LOG_PATTERN_CONSOLE">
 			%d{HH:mm:ss,SSS} %5p [%-20c{1}] : %m%n
@@ -34,7 +34,7 @@
 	<Loggers>
 
 		<!-- Log for customns package -->
-		<Logger name="br.com.challenge" level="DEBUG" additivity="false">
+		<Logger name="br.com.friends" level="DEBUG" additivity="false">
 			<AppenderRef ref="Console" />			
 		</Logger>
 		
