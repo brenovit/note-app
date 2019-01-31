@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.friends.noteapp.entity.Note;
+import br.com.friends.noteapp.bean.request.NoteRequest;
+import br.com.friends.noteapp.bean.response.NoteResponse;
 import br.com.friends.noteapp.service.NoteService;
 
 @RestController
@@ -23,15 +24,15 @@ public class NoteController {
 	private NoteService noteService;
 	
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody Note note){
-		Note noteNew = noteService.create(note);
-		return new ResponseEntity<Note>(noteNew, HttpStatus.OK);
+	public ResponseEntity<?> create(@RequestBody NoteRequest request){
+		NoteResponse response = noteService.create(request);
+		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "/{id}" )
 	public ResponseEntity<?> read(@PathVariable long id){
-		Note note = noteService.get(id).get();
-		return new ResponseEntity<Note>(note, HttpStatus.OK);
+		NoteResponse response = noteService.get(id);
+		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
 	
 	@DeleteMapping(path="/{id}")
@@ -40,9 +41,9 @@ public class NoteController {
 	}
 	
 	@PutMapping(path="/")
-	public ResponseEntity<?> update(@RequestBody Note note){
-		Note noteNew = noteService.update(note);
-		return new ResponseEntity<Note>(noteNew, HttpStatus.OK);
+	public ResponseEntity<?> update(@RequestBody NoteRequest request){
+		NoteResponse response = noteService.update(request);
+		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
 	
 }

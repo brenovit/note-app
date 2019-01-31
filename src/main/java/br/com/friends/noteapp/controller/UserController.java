@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.friends.noteapp.entity.User;
+import br.com.friends.noteapp.bean.request.UserRequest;
+import br.com.friends.noteapp.bean.response.UserResponse;
 import br.com.friends.noteapp.service.UserService;
 
 @RestController
@@ -24,15 +25,15 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody User user){
-		User userNew = userService.create(user);
-		return new ResponseEntity<User>(userNew, HttpStatus.OK);
+	public ResponseEntity<?> create(@RequestBody UserRequest request){
+		UserResponse response = userService.create(request);
+		return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "/{id}" )
 	public ResponseEntity<?> read(@PathVariable UUID id){
-		User user = userService.get(id).get();
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		UserResponse response = userService.get(id);
+		return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
 	}
 	
 	@DeleteMapping(path="/{id}")
@@ -41,8 +42,8 @@ public class UserController {
 	}
 	
 	@PutMapping(path="/")
-	public ResponseEntity<?> update(@RequestBody User user){
-		User userNew = userService.update(user);
-		return new ResponseEntity<User>(userNew, HttpStatus.OK);
+	public ResponseEntity<?> update(@RequestBody UserRequest user){
+		UserResponse response = userService.update(user);
+		return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
 	}
 }

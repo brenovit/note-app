@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -26,8 +27,16 @@ public class Note {
 	@GeneratedValue
 	private long id;
 	
+	@NotNull(message="The ")
+	@NotBlank
 	private String title;
+	
+	@NotNull
+	@NotBlank
 	private String body;
+
+	@NotNull
+	@NotBlank
 	private String color;
 	
 	@Temporal(TemporalType.DATE)

@@ -6,7 +6,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.friends.noteapp.bean.request.UserRequest;
+import br.com.friends.noteapp.bean.response.UserResponse;
 import br.com.friends.noteapp.entity.User;
+import br.com.friends.noteapp.parser.UserParser;
 import br.com.friends.noteapp.repository.UserRepository;
 
 @Service
@@ -14,19 +17,25 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Optional<User> get(UUID id) {
-		return userRepository.findById(id);	
+	public UserResponse get(UUID id) {
+		Optional<User> optional = userRepository.findById(id);
+		User entity = optional.get();
+		return UserParser.parse(entity);	
 	}
 	
-	public User create(User note) {
-		return userRepository.save(note);
+	public UserResponse create(UserRequest request) {
+		User entity = UserParser.parser(request);
+		entity = userRepository.save(entity);
+		return UserParser.parse(entity);	
 	}
 
 	public void delete(UUID id) {
 		userRepository.deleteById(id);
 	}
 
-	public User update(User note) {
-		return userRepository.save(note);
+	public UserResponse update(UserRequest request) {
+		User entity = UserParser.parser(request);
+		entity = userRepository.save(entity);
+		return UserParser.parse(entity);
 	}
 }

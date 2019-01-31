@@ -1,5 +1,44 @@
 package br.com.friends.noteapp.util;
 
-public class ApiErrors {
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+
+import lombok.Data;
+
+@Data
+public class ApiErrors {
+	
+	private String timestamp;
+	private String status;
+	private String error;
+	private String path;
+	private List<Error> errors;
+	
+	public ApiErrors(String code, String message) {
+		errors = new ArrayList<>();
+		errors.add(new Error(code, message));
+		timestamp = new Date().getTime() + "";
+	}	
+
+	public ApiErrors(Errors errs) {
+		this.errors = new ArrayList<>();
+		for (ObjectError obj : errs.getAllErrors()) {
+			this.errors.add(new Error("99",obj.getDefaultMessage()));
+		}
+	}	
+	
+	public void add(Error error) {
+		if(this.errors == null) {
+			this.errors = new ArrayList<>();	
+		}
+		errors.add(error);
+	}
+	
+	public void add(String code, String message) {
+		add(new Error(code, message));
+	}
 }
