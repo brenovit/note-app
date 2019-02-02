@@ -19,7 +19,7 @@ import br.com.friends.noteapp.bean.response.UserResponse;
 import br.com.friends.noteapp.service.UserService;
 
 @RestController
-@RequestMapping(value="/users")
+@RequestMapping(value="/api/users")
 public class UserController {
 	@Autowired
 	private UserService userService;

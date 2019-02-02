@@ -17,7 +17,7 @@ import br.com.friends.noteapp.bean.response.NoteResponse;
 import br.com.friends.noteapp.service.NoteService;
 
 @RestController
-@RequestMapping(value="/notes")
+@RequestMapping(value="/api/notes")
 public class NoteController {
 	
 	@Autowired

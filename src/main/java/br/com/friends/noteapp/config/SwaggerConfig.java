@@ -24,7 +24,7 @@ public class SwaggerConfig {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("br.com.wexinc.wexgateway.controller"))
+				.apis(RequestHandlerSelectors.basePackage("br.com.friends.noteapp.controller"))
                 .paths(regex("/api/.*"))
 				.paths(PathSelectors.any())
 				.build()
@@ -33,8 +33,8 @@ public class SwaggerConfig {
 	
 	 private ApiInfo getAPIInfo() {
 	        return new ApiInfoBuilder()
-	                .title("WexGateway")
-	                .description("\"Spring Boot REST API para tratar transações NCS\"")
+	                .title("NotaAqui")
+	                .description("\"API de lembretes do NotaAqui\"")
 	                .version(version)
 	                .contact(new Contact("WEX", "http://www.wexinc.com.br/Conteudo/Pagina/QuemSomos", ""))
 	                .build();
