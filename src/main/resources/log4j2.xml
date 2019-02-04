@@ -3,27 +3,24 @@
 
 	<Properties>
 		<Property name="FILE_NAME">
-			/app/log/NotaAqui/NotaAqui.log
+			./log/NotaAqui.log
 		</Property>
 		<Property name="FILE_PATTERN">
-			/app/log/NotaAqui/old/%d{yyyy-MM-dd}.NotaAqui.log
+			./log/old/%d{yyyy-MM-dd}.NotaAqui.log
 		</Property>
-		<Property name="LOG_PATTERN_CONSOLE">
-			%d{HH:mm:ss,SSS} %5p [%-20c{1}] : %m%n
-		</Property>
-		<Property name="LOG_PATTERN_FILE">
+		<Property name="LOG_PATTERN">
 			%d{yyyy-MM-dd HH:mm:ss,SSS} %5p [%-20c{1}] : %m%n
 		</Property>
 	</Properties>
 
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
-			<PatternLayout pattern="${LOG_PATTERN_CONSOLE}" />
+			<PatternLayout pattern="${LOG_PATTERN}" />
 		</Console>
 		<!-- 
 		<RollingFile name="File" fileName="${FILE_NAME}"
 			filePattern="${FILE_PATTERN}">
-			<PatternLayout pattern="${LOG_PATTERN_FILE}" />
+			<PatternLayout pattern="${LOG_PATTERN}" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
 			</Policies>

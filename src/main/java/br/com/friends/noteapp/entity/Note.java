@@ -54,6 +54,11 @@ public class Note {
 	@NotNull
 	private NoteType type;
 	
+	private String personName;
+	
+	private String gift;
+	private String locationParty;	
+	
 	public Note(String title, String body, String color) {
 		this.title = title;
 		this.body = body;
