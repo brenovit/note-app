@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.util;
+package br.com.friends.noteapp.util.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

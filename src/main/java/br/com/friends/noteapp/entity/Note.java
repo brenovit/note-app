@@ -1,6 +1,8 @@
 package br.com.friends.noteapp.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -57,7 +60,10 @@ public class Note {
 	private String personName;
 	
 	private String gift;
-	private String locationParty;	
+	private String locationParty;
+	
+	@OneToMany
+	private List<Task> tasks = new ArrayList<Task>();
 	
 	public Note(String title, String body, String color) {
 		this.title = title;

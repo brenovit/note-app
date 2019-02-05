@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import br.com.friends.noteapp.exception.ApplicationException;
 import br.com.friends.noteapp.exception.ValidationException;
-import br.com.friends.noteapp.util.ApiErrors;
+import br.com.friends.noteapp.util.error.ApiErrors;
 import lombok.extern.log4j.Log4j2;
 
 @ControllerAdvice
