@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.request.UserRequest;
 import br.com.friends.noteapp.bean.response.UserResponse;
-import br.com.friends.noteapp.entity.User;
+import br.com.friends.noteapp.domain.user.User;
+import br.com.friends.noteapp.domain.user.UserRepository;
 import br.com.friends.noteapp.parser.UserParser;
-import br.com.friends.noteapp.repository.UserRepository;
 
 @Service
 public class UserService {

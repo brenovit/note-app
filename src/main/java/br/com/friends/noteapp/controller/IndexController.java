@@ -10,7 +10,6 @@ public class IndexController {
 
 	@GetMapping(value = "/")
 	public String index(Model model) {
-		System.out.println("Index");
 		model.addAttribute("version", "1.0.0");
 		return "index";
 	}

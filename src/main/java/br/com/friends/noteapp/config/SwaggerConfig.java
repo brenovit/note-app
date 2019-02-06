@@ -36,7 +36,7 @@ public class SwaggerConfig {
 	                .title("NotaAqui")
 	                .description("\"API de lembretes do NotaAqui\"")
 	                .version(version)
-	                .contact(new Contact("WEX", "http://www.wexinc.com.br/Conteudo/Pagina/QuemSomos", ""))
+	                .contact(new Contact("Friends", "http://www.notaaqui.com.br/Conteudo/Pagina/QuemSomos", ""))
 	                .build();
 	    }
 }

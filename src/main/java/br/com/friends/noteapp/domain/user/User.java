@@ -1,7 +1,8 @@
-package br.com.friends.noteapp.entity;
+package br.com.friends.noteapp.domain.user;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,9 @@ public class User {
 	
 	@Id
 	@GeneratedValue	
-	private UUID id;	
+	@Column(name="IDUSER")
+	private UUID id;
+	
 	private String name;
 	private String login;
 	private String password;

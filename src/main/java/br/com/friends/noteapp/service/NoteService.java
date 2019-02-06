@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.request.NoteRequest;
 import br.com.friends.noteapp.bean.response.NoteResponse;
-import br.com.friends.noteapp.entity.Note;
+import br.com.friends.noteapp.domain.note.Note;
+import br.com.friends.noteapp.domain.note.NoteRepository;
 import br.com.friends.noteapp.parser.NoteParser;
-import br.com.friends.noteapp.repository.NoteRepository;
 
 @Service
 public class NoteService {
@@ -22,6 +22,11 @@ public class NoteService {
 		Note entity = optional.get();
 		return NoteParser.parse(entity);
 
+	}
+	
+	public NoteResponse getFromUserId(String id) {
+		Note entity = noteRepository.findByUserId(id);
+		return NoteParser.parse(entity);
 	}
 	
 	public NoteResponse create(NoteRequest request) {

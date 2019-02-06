@@ -1,10 +1,8 @@
-package br.com.friends.noteapp.repository;
+package br.com.friends.noteapp.domain.user;
 
 import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
-
-import br.com.friends.noteapp.entity.User;
 
 public interface UserRepository extends CrudRepository<User, UUID>{
 

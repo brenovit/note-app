@@ -2,7 +2,7 @@ package br.com.friends.noteapp.parser;
 
 import br.com.friends.noteapp.bean.request.NoteRequest;
 import br.com.friends.noteapp.bean.response.NoteResponse;
-import br.com.friends.noteapp.entity.Note;
+import br.com.friends.noteapp.domain.note.Note;
 
 public class NoteParser {
 	

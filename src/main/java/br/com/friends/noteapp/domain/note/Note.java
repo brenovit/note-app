@@ -1,8 +1,6 @@
-package br.com.friends.noteapp.entity;
+package br.com.friends.noteapp.domain.note;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.friends.noteapp.bean.dto.NoteType;
+import br.com.friends.noteapp.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,11 +28,13 @@ import lombok.NoArgsConstructor;
 @Table(name="T_NOTE")
 @NoArgsConstructor
 public class Note {
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue	
+	@Column(name="IDNOTE")
 	private long id;
 	
-	@NotNull(message="The ")
+	@NotNull
 	@NotBlank
 	private String title;
 	
@@ -51,20 +52,17 @@ public class Note {
 	
 	@ManyToOne
 	@NotNull(message="Usuário Obrigatório")
+	@JoinColumn(name = "IDUSER", referencedColumnName = "IDUSER")
 	private User user;
 	
 	@Enumerated(EnumType.ORDINAL)
 	@NotNull
 	private NoteType type;
-	
-	private String personName;
-	
+		
+	private String personName;	
 	private String gift;
 	private String locationParty;
-	
-	@OneToMany
-	private List<Task> tasks = new ArrayList<Task>();
-	
+		
 	public Note(String title, String body, String color) {
 		this.title = title;
 		this.body = body;

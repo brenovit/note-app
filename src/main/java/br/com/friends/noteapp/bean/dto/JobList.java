@@ -1,14 +1,14 @@
 package br.com.friends.noteapp.bean.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.com.friends.noteapp.job.model.IJob;
 
 public class JobList {
-	private static List<IJob> list = new ArrayList<IJob>();
+	private static Set<IJob> list = new HashSet<IJob>();
 	
-	public static List<IJob> getList(){		
+	public static Set<IJob> getList(){		
 		 return list;
 	}
 

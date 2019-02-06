@@ -35,12 +35,18 @@ public class NoteController {
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
 	
+	@GetMapping(path = "/user/{id}" )
+	public ResponseEntity<?> listFromUser(@PathVariable String id){
+		NoteResponse response = noteService.getFromUserId(id);
+		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
+	}
+	
 	@DeleteMapping(path="/{id}")
 	public void delete(@PathVariable long id){
 		noteService.delete(id);
 	}
 	
-	@PutMapping(path="/")
+	@PutMapping
 	public ResponseEntity<?> update(@RequestBody NoteRequest request){
 		NoteResponse response = noteService.update(request);
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
