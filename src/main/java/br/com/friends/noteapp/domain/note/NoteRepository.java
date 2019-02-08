@@ -6,8 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface NoteRepository extends JpaRepository<Note, Long>{
 	
-	@Query(nativeQuery= true, value ="SELECT * FROM Note n "
-			+"WHERE n.IDUSER = :userId")	
+	@Query(nativeQuery= true, value ="SELECT * FROM Note n WHERE n.IDUSER = :userId")	
 	Note findByUserId(@Param("userId") String id);
 
 }

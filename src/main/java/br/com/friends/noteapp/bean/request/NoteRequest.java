@@ -1,20 +1,28 @@
 package br.com.friends.noteapp.bean.request;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Data
 public class NoteRequest {
 	private String title;
-	private String body;	
-	private String userId;
-	private String type;
+	private String body;
+	private UUID userId;
+	private Integer type;
+	private String color;
 	private String personName;	
 	private String gift;
 	private String locationParty;
-	private List<TaskRequest> tasks = new ArrayList<TaskRequest>();
+	@Getter
+	private String time;
+	private List<TaskRequest> tasks	= new ArrayList<TaskRequest>();
 	private List<ItemRequest> itens = new ArrayList<ItemRequest>();
 	
 	@Data
@@ -29,5 +37,10 @@ public class NoteRequest {
 		private String description;
 		private Float quantity;
 		private String unit;
+	}	
+	
+	public Date getAlertTime() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		return sdf.parse(time);
 	}
 }

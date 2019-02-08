@@ -12,8 +12,8 @@ import lombok.Data;
 @Data
 public class ApiErrors {
 	
-	private String timestamp;
-	private String status;
+	private Date timestamp;
+	private int status;
 	private String error;
 	private String path;
 	private List<Error> errors;
@@ -21,7 +21,7 @@ public class ApiErrors {
 	public ApiErrors(String code, String message) {
 		errors = new ArrayList<>();
 		errors.add(new Error(code, message));
-		timestamp = new Date().getTime() + "";
+		timestamp = new Date();
 	}	
 
 	public ApiErrors(Errors errs) {

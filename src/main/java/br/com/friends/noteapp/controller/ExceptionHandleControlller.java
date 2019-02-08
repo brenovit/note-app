@@ -1,6 +1,9 @@
 package br.com.friends.noteapp.controller;
 
 import java.text.MessageFormat;
+import java.text.ParseException;
+
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -20,39 +23,56 @@ import lombok.extern.log4j.Log4j2;
 @ControllerAdvice
 @Log4j2
 public class ExceptionHandleControlller {
-	
-	@Autowired private MessageSource bundle;
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
+	@Autowired
+	private MessageSource bundle;
+
 	@ExceptionHandler(ApplicationException.class)
-    public ResponseEntity<ApiErrors> processValidationError(MethodArgumentNotValidException ex) {
-        BindingResult result = ex.getBindingResult();
-        log.error(result.getFieldError().getDefaultMessage());
-        return new ResponseEntity(new ApiErrors(result), HttpStatus.BAD_REQUEST);
-    }
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public ResponseEntity<ApiErrors> processValidationError(MethodArgumentNotValidException ex) {
+		BindingResult result = ex.getBindingResult();
+		log.error(result.getFieldError().getDefaultMessage());
+		return new ResponseEntity<ApiErrors>(new ApiErrors(result), HttpStatus.BAD_REQUEST);
+	}
+
 	@ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiErrors> processValidationError(Exception ex) {
+	public ResponseEntity<ApiErrors> processValidationError(Exception ex) {
 		log.error(ex.getMessage(), ex);
 		ApiErrors apiErrors = new ApiErrors("99", "ERRO INTERNO DE PROCESSAMENTO");
 		apiErrors.add("99", ex.getMessage());
-        return new ResponseEntity(apiErrors, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+		apiErrors.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		return new ResponseEntity<ApiErrors>(apiErrors, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@ExceptionHandler(ValidationException.class)
-    public ResponseEntity<ApiErrors> processValidationError(ValidationException ex) {	
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<ApiErrors> processConstraintViolationException(ConstraintViolationException ex) {
 		log.error(ex.getMessage(), ex);
-		return new ResponseEntity(sanitizeApiError(ex.getCode(), ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-		
+		ApiErrors apiErrors = new ApiErrors("99", "VALIDATION FAIL");
+		apiErrors.add("99", ex.getMessage());
+		apiErrors.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ApiErrors>(apiErrors, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(ValidationException.class)
+	public ResponseEntity<ApiErrors> processValidationError(ValidationException ex) {
+		log.error(ex.getMessage(), ex);
+		return new ResponseEntity<ApiErrors>(sanitizeApiError(ex.getCode(), ex.getMessage()), HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(ParseException.class)
+	public ResponseEntity<ApiErrors> processParseException(ParseException ex) {
+		log.error(ex.getMessage(), ex);
+		ApiErrors apiErrors = new ApiErrors("98", "ERRO NOS DADOS INFORMADOS");
+		apiErrors.add("99", ex.getMessage());
+		apiErrors.setStatus(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ApiErrors>(apiErrors, HttpStatus.BAD_REQUEST);
+	}
+
 	private ApiErrors sanitizeApiError(String code, String extraMsg) {
 		String errorMessage = bundle.getMessage(code, null, LocaleContextHolder.getLocale());
 		if (extraMsg != null) {
 			errorMessage = MessageFormat.format(errorMessage, extraMsg);
 		}
-		
+
 		log.error(MessageFormat.format("Erro logico, Codigo: {0} - Traducao: {1}", code, errorMessage));
 		return new ApiErrors(code, errorMessage);
 	}

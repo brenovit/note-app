@@ -1,5 +1,7 @@
 package br.com.friends.noteapp.controller;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class NoteController {
 	private NoteService noteService;
 	
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody NoteRequest request){
+	public ResponseEntity<?> create(@RequestBody NoteRequest request) throws ParseException{
 		NoteResponse response = noteService.create(request);
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
@@ -47,7 +49,7 @@ public class NoteController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody NoteRequest request){
+	public ResponseEntity<?> update(@RequestBody NoteRequest request) throws ParseException{
 		NoteResponse response = noteService.update(request);
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}

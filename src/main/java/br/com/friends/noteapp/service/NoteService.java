@@ -1,5 +1,6 @@
 package br.com.friends.noteapp.service;
 
+import java.text.ParseException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class NoteService {
 		return NoteParser.parse(entity);
 	}
 	
-	public NoteResponse create(NoteRequest request) {
+	public NoteResponse create(NoteRequest request) throws ParseException {
 		Note entity = NoteParser.parser(request);
 		entity = noteRepository.save(entity);
 		return NoteParser.parse(entity);
@@ -39,7 +40,7 @@ public class NoteService {
 		noteRepository.deleteById(id);
 	}
 
-	public NoteResponse update(NoteRequest request) {
+	public NoteResponse update(NoteRequest request) throws ParseException {
 		Note entity = NoteParser.parser(request);
 		entity = noteRepository.save(entity);
 		return NoteParser.parse(entity);
