@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.friends.noteapp.bean.response.JobResponse;
+import br.com.friends.noteapp.bean.job.JobResponse;
 import br.com.friends.noteapp.service.JobService;
 
 @RestController
@@ -21,5 +21,5 @@ public class JobController {
 	public ResponseEntity<?> listJob(){
 		JobResponse response = jobService.getJobs();
 		return new ResponseEntity<JobResponse>(response, HttpStatus.OK);
-	}
+	}	
 }

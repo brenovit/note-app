@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.util.Date;
 
 import br.com.friends.noteapp.bean.dto.NoteType;
-import br.com.friends.noteapp.bean.request.NoteRequest;
-import br.com.friends.noteapp.bean.response.NoteResponse;
+import br.com.friends.noteapp.bean.note.NoteRequest;
+import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.domain.note.Note;
 
 public class NoteParser {

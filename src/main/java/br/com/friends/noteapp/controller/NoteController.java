@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.friends.noteapp.bean.request.NoteRequest;
-import br.com.friends.noteapp.bean.response.NoteResponse;
+import br.com.friends.noteapp.bean.note.NoteRequest;
+import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.service.NoteService;
 
 @RestController

@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.bean.request;
+package br.com.friends.noteapp.bean.user;
 
 import lombok.Data;
 

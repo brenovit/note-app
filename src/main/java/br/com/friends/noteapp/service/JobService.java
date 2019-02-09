@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.dto.JobList;
-import br.com.friends.noteapp.bean.response.JobResponse;
+import br.com.friends.noteapp.bean.job.JobResponse;
 import br.com.friends.noteapp.job.model.IJob;
 
 @Service

@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.bean.response;
+package br.com.friends.noteapp.bean.note;
 
 import java.util.Date;
 import java.util.UUID;

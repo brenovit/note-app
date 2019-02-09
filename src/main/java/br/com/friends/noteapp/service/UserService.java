@@ -6,8 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.friends.noteapp.bean.request.UserRequest;
-import br.com.friends.noteapp.bean.response.UserResponse;
+import br.com.friends.noteapp.bean.user.UserRequest;
+import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.domain.user.User;
 import br.com.friends.noteapp.domain.user.UserRepository;
 import br.com.friends.noteapp.parser.UserParser;

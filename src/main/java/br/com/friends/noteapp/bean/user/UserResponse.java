@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.bean.response;
+package br.com.friends.noteapp.bean.user;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.bean.request;
+package br.com.friends.noteapp.bean.note;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

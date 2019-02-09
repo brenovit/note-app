@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.friends.noteapp.bean.request.NoteRequest;
-import br.com.friends.noteapp.bean.response.NoteResponse;
+import br.com.friends.noteapp.bean.note.NoteRequest;
+import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.domain.note.Note;
 import br.com.friends.noteapp.domain.note.NoteRepository;
 import br.com.friends.noteapp.parser.NoteParser;
