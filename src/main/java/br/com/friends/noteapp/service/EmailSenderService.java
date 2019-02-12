@@ -24,35 +24,29 @@ public class EmailSenderService {
 	private MailSMTPProperties mailSMTPProperties;
 
 	public void sendMail(String subject, String message, String to) throws MessagingException {
-		// Setting up configurations for the email connection to the Google SMTP server
-		// using TLS
 		Properties props = new Properties();
-		//props.put("mail.smtp.host", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", mailSMTPProperties.getHost());
 		props.put("mail.smtp.port", mailSMTPProperties.getPort());
 		props.put("mail.smtp.auth", mailSMTPProperties.getAuth());
-		// Establishing a session with required user details
+		
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(mailSMTPProperties.getUsername(), mailSMTPProperties.getPassword());
 			}
 		});
-		// Creating a Message object to set the email content
+		
 		MimeMessage msg = new MimeMessage(session);
-		// Storing the comma seperated values to email addresses
-		/*
-		 * Parsing the String with defualt delimiter as a comma by marking the boolean
-		 * as true and storing the email addresses in an array of InternetAddress
-		 * objects
-		 */
-		InternetAddress[] address = InternetAddress.parse(to, true);
-		// Setting the recepients from the address variable
-		msg.setRecipients(Message.RecipientType.TO, address);
-
+		
+		InternetAddress[] replyTo = InternetAddress.parse("notaaqui@noreply.com", true);
+		InternetAddress[] recipientsTo = InternetAddress.parse(to, true);
+		
+		msg.setRecipients(Message.RecipientType.TO, recipientsTo);
+		msg.setFrom("notaaqui@noreply.com");
+		msg.setReplyTo(replyTo);
 		msg.setSubject(subject);
-		msg.setSentDate(new Date());
-		msg.setText(message);
+		msg.setSentDate(new Date());		
+		msg.setContent(message, "text/html");
 		msg.setHeader("XPriority", "1");
 		Transport.send(msg);
 
