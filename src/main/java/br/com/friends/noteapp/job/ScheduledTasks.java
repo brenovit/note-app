@@ -1,12 +1,15 @@
 package br.com.friends.noteapp.job;
 
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.config.ScheduledTask;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.scheduling.support.PeriodicTrigger;
 import org.springframework.stereotype.Component;
@@ -16,28 +19,26 @@ import br.com.friends.noteapp.job.notification.SendNotificationJob;
 @Component
 public class ScheduledTasks {
 	
+	private final Map<Object, Set<ScheduledTask>> scheduledTasks =
+	        new IdentityHashMap<Object, Set<ScheduledTask>>(16);
+	
 	@Autowired
 	private SendNotificationJob sendNotificationJob;
-	
-	
+
 	@Autowired
 	private TaskScheduler taskScheduler;
-	
-	@Autowired
+
 	private ScheduledFuture<?> scheduledFuture;
-	
-	public void start(String jobName) {		
-		
-			CronTrigger cron = new CronTrigger("");
-			DateTime date = new DateTime(2019, 2, 11, 21, 16);
-			PeriodicTrigger periodicTrigger = new PeriodicTrigger(2000, TimeUnit.MILLISECONDS);
-			scheduledFuture = taskScheduler.schedule(sendNotificationJob,periodicTrigger);			
-		
+
+	public void start(String jobName) {
+		CronTrigger cron = new CronTrigger("");
+		DateTime date = new DateTime(2019, 2, 11, 21, 16);
+		PeriodicTrigger periodicTrigger = new PeriodicTrigger(2000, TimeUnit.MILLISECONDS);
+		scheduledFuture = taskScheduler.schedule(sendNotificationJob, periodicTrigger);
 	}
 
 	public void stop(String jobName) {
-		// TODO Auto-generated method stub
-		
+		scheduledFuture.cancel(false);
 	}
-	
+
 }

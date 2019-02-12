@@ -16,7 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import br.com.friends.noteapp.job.JobSchedule;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/job")
 public class TestController {
 
 	private static final String SCHEDULED_TASKS = "scheduledTasks";
