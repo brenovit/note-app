@@ -44,8 +44,7 @@ public class TestController {
 		Set<ScheduledTask> setTasks = postProcessor.getScheduledTasks();
 		if (!setTasks.isEmpty()) {
 			return new ResponseEntity<Set<ScheduledTask>>(setTasks, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<String>("No running tasks !", HttpStatus.OK);
 		}
+		return new ResponseEntity<String>("No running tasks !", HttpStatus.OK);		
 	}
 }

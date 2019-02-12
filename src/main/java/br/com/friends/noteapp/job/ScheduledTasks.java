@@ -1,44 +1,47 @@
 package br.com.friends.noteapp.job;
 
-import java.util.IdentityHashMap;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
-import org.joda.time.DateTime;
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.TaskScheduler;
-import org.springframework.scheduling.config.ScheduledTask;
-import org.springframework.scheduling.support.CronTrigger;
-import org.springframework.scheduling.support.PeriodicTrigger;
 import org.springframework.stereotype.Component;
 
-import br.com.friends.noteapp.job.notification.SendNotificationJob;
+import br.com.friends.noteapp.job.model.IJobNew;
+import br.com.friends.noteapp.job.notification.Job1;
+import br.com.friends.noteapp.job.notification.Job2;
+import br.com.friends.noteapp.job.notification.Job3;
+import lombok.Getter;
 
 @Component
 public class ScheduledTasks {
 	
-	private final Map<Object, Set<ScheduledTask>> scheduledTasks =
-	        new IdentityHashMap<Object, Set<ScheduledTask>>(16);
+	@Getter	
+	private static final Map<Object, IJobNew> scheduledTasks = new HashMap<Object, IJobNew>();
 	
 	@Autowired
-	private SendNotificationJob sendNotificationJob;
+	private Job1 job1;
 
 	@Autowired
-	private TaskScheduler taskScheduler;
-
-	private ScheduledFuture<?> scheduledFuture;
-
+	private Job2 job2;
+	
+	@Autowired
+	private Job3 job3;
+	
+	@PostConstruct
+	private void initiate() {
+		scheduledTasks.put(job1.getName(), job1);
+		scheduledTasks.put(job2.getName(), job2);
+		scheduledTasks.put(job3.getName(), job3);
+	}
+	
 	public void start(String jobName) {
-		CronTrigger cron = new CronTrigger("");
-		DateTime date = new DateTime(2019, 2, 11, 21, 16);
-		PeriodicTrigger periodicTrigger = new PeriodicTrigger(2000, TimeUnit.MILLISECONDS);
-		scheduledFuture = taskScheduler.schedule(sendNotificationJob, periodicTrigger);
+		scheduledTasks.get(jobName).start();
 	}
 
 	public void stop(String jobName) {
-		scheduledFuture.cancel(false);
+		scheduledTasks.get(jobName).stop();
 	}
 
 }

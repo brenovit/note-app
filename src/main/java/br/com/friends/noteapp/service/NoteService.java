@@ -22,7 +22,6 @@ public class NoteService {
 		Optional<Note> optional = noteRepository.findById(id);
 		Note entity = optional.get();
 		return NoteParser.parse(entity);
-
 	}
 	
 	public NoteResponse getFromUserId(String id) {
