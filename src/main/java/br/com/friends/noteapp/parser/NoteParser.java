@@ -13,6 +13,7 @@ public class NoteParser {
 	
 	public static NoteResponse parse(Note entity) {
 		NoteResponse response = new NoteResponse();
+		response.setId(entity.getId());
 		response.setBody(entity.getBody());
 		response.setColor(entity.getColor());
 		response.setGift(entity.getGift());
@@ -22,6 +23,7 @@ public class NoteParser {
 		response.setTitle(entity.getTitle());
 		response.setType(entity.getType());
 		response.setUserId(entity.getUser().getId());
+		response.setSended(String.valueOf(entity.isSended()));
 		return response;
 	}
 	

@@ -1,6 +1,7 @@
 package br.com.friends.noteapp.service;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,17 @@ public class NoteService {
 
 	public NoteResponse update(NoteRequest request) throws ParseException {
 		Note entity = NoteParser.parser(request);
-		entity = noteRepository.save(entity);
+		entity = update(entity);
 		return NoteParser.parse(entity);
+	}
+	
+	public Note update(Note entity) throws ParseException {
+		entity = noteRepository.save(entity);
+		return entity;
+	}
+
+	public List<Note> getAll() {
+		return noteRepository.findAll();
 	}
 	
 }

@@ -19,6 +19,7 @@ public class NoteRequest {
 	private String personName;	
 	private String gift;
 	private String locationParty;
+	
 	@Getter
 	private String time;
 	private List<TaskRequest> tasks	= new ArrayList<TaskRequest>();

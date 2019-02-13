@@ -1,23 +1,23 @@
 package br.com.friends.noteapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 
 @Getter
-@Service
+@Component
 public class FacadeService {
 	
 	@Autowired
-	private EmailSenderService emailSenderService;
+	private EmailSenderService emailSender;
 	@Autowired
-	private JobService jobService;
+	private JobService job;
 	@Autowired
-	private NoteService noteService;
+	private NoteService note;
 	@Autowired	
-	private UserService userService;
+	private UserService user;
 	@Autowired
-	private SendNotificationService notificationService;
+	private SendNotificationService notification;
 	
 }

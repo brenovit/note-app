@@ -16,8 +16,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.email.EmailRequest;
 import br.com.friends.noteapp.bean.properties.MailSMTPProperties;
+import lombok.extern.log4j.Log4j2;
 
 @Service
+@Log4j2
 public class EmailSenderService {
 	
 	@Autowired
@@ -49,7 +51,7 @@ public class EmailSenderService {
 		msg.setContent(message, "text/html");
 		msg.setHeader("XPriority", "1");
 		Transport.send(msg);
-
+		log.info("Email sended");
 	}
 
 	public void sendMail(EmailRequest request) throws MessagingException {

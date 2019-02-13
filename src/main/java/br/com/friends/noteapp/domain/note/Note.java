@@ -8,6 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -50,7 +51,8 @@ public class Note {
 	private Date lastModificatedDate;
 	
 	@ManyToOne
-	@NotNull(message="User required")	
+	@NotNull(message="User required")
+	@JoinColumn(name = "IDUSER", referencedColumnName = "IDUSER")
 	private User user;
 	
 	@Enumerated(EnumType.ORDINAL)
@@ -62,6 +64,9 @@ public class Note {
 	private String locationParty;
 	
 	private Date alertTime;
+	
+	@NotNull		
+	private boolean sended;
 	
 	public Note(String title, String body, String color) {
 		this.title = title;
