@@ -1,7 +1,5 @@
 package br.com.friends.noteapp.domain.user;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,14 +18,19 @@ import lombok.NoArgsConstructor;
 public class User {
 	
 	@Id
-	@GeneratedValue	
+	@GeneratedValue
 	@Column(name="IDUSER")
-	private UUID id;
+	private Long id;
 	
 	private String name;
 	private String login;
 	private String password;
 	private String email;
 	private String avatar;
+	
+	public User id(long id) {
+		this.id = id;
+		return this;
+	}
 	
 }

@@ -1,7 +1,6 @@
 package br.com.friends.noteapp.service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public UserResponse get(UUID id) {
+	public UserResponse get(Long id) {
 		Optional<User> optional = userRepository.findById(id);
 		User entity = optional.get();
 		return UserParser.parse(entity);	
@@ -29,7 +28,7 @@ public class UserService {
 		return UserParser.parse(entity);	
 	}
 
-	public void delete(UUID id) {
+	public void delete(Long id) {
 		userRepository.deleteById(id);
 	}
 

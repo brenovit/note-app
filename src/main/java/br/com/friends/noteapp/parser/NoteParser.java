@@ -7,6 +7,7 @@ import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.domain.note.Note;
+import br.com.friends.noteapp.domain.user.User;
 
 public class NoteParser {
 	
@@ -20,7 +21,7 @@ public class NoteParser {
 		response.setPersonName(entity.getPersonName());
 		response.setTitle(entity.getTitle());
 		response.setType(entity.getType());
-		response.setUserId(entity.getUserId());		
+		response.setUserId(entity.getUser().getId());
 		return response;
 	}
 	
@@ -34,7 +35,8 @@ public class NoteParser {
 		entity.setLocationParty(request.getLocationParty());
 		entity.setPersonName(request.getPersonName());
 		entity.setTitle(request.getTitle());				
-		entity.setType(getType(request.getType()));		
+		entity.setType(getType(request.getType()));
+		entity.setUser(new User().id(request.getUserId()));
 		return entity;
 	}
 

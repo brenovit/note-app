@@ -6,12 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import br.com.friends.noteapp.domain.note.Note;
 import lombok.Data;
 
 @Data
@@ -32,6 +33,8 @@ public class Task {
 	@ColumnDefault(value="false")
 	private boolean done;
 	
-	@JoinColumn(name = "IDNOTE", referencedColumnName = "IDNOTE")
-	private int noteId;
+	//@JoinColumn(name = "IDNOTE", referencedColumnName = "IDNOTE")
+	@ManyToOne
+	@NotNull	
+	private Note note;
 }

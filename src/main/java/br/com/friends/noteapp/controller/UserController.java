@@ -1,7 +1,5 @@
 package br.com.friends.noteapp.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +29,13 @@ public class UserController {
 	}
 	
 	@GetMapping(path = "/{id}" )
-	public ResponseEntity<?> read(@PathVariable UUID id){
+	public ResponseEntity<?> read(@PathVariable Long id){
 		UserResponse response = userService.get(id);
 		return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
 	}
 	
 	@DeleteMapping(path="/{id}")
-	public void delete(@PathVariable UUID id){
+	public void delete(@PathVariable Long id){
 		userService.delete(id);
 	}
 	

@@ -2,8 +2,6 @@ package br.com.friends.noteapp.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.UUID;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void test() {
-		User user = repository.save(new User(UUID.randomUUID(),"Breno Nunes", "brenovit", "12345","breno.arantes97@gmail.com","Breno.png"));
+		User user = repository.save(new User(1L,"Breno Nunes", "brenovit", "12345","breno.arantes97@gmail.com","Breno.png"));
 
 		assertThat(user).isNotNull();
 		assertThat(repository.count()).isEqualTo(1L);

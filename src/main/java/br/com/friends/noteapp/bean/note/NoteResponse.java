@@ -1,19 +1,18 @@
 package br.com.friends.noteapp.bean.note;
 
 import java.util.Date;
-import java.util.UUID;
 
 import br.com.friends.noteapp.bean.dto.NoteType;
 import lombok.Data;
 
 @Data
 public class NoteResponse {
-	private long id;
+	private Long id;
 	private String title;
 	private String body;
 	private String color;
 	private Date lastModificatedDate;
-	private UUID userId;
+	private long userId;
 	private NoteType type;
 	private String personName;
 	private String gift;

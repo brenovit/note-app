@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import lombok.Data;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import lombok.Getter;
 public class NoteRequest {
 	private String title;
 	private String body;
-	private UUID userId;
+	private Long userId;
 	private Integer type;
 	private String color;
 	private String personName;	
