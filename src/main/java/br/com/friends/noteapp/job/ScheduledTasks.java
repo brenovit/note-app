@@ -21,7 +21,6 @@ public class ScheduledTasks {
 	@Autowired
 	private SendNotificationJob job1;
 	
-	
 	@PostConstruct
 	private void initiate() {
 		scheduledTasks.put(job1.getName(), job1);

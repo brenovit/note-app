@@ -10,6 +10,8 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 import br.com.friends.noteapp.domain.note.Note;
 import br.com.friends.noteapp.domain.user.User;
 import lombok.extern.log4j.Log4j2;
@@ -26,15 +28,16 @@ public class SendNotificationService {
 		for (Note note : notes) {
 			String alertDt = new DateTime(note.getAlertTime()).toString("dd/MM/yyyy HH:mm");
 			String actualDt = new DateTime(new Date()).toString("dd/MM/yyyy HH:mm");
-			log.info("Alert: "+alertDt + " Actual: "+actualDt);
 			
 			if(alertDt.equals(actualDt)) {
+				log.info("Alert: "+alertDt + " Actual: "+actualDt);
 				User user = note.getUser();
 				try {
-					service.getEmailSender().sendMail("NotaAqui Alert",note.getBody(), user.getEmail());
+					service.getEmailSender().sendMail(note.getTitle(),note.getBody(), user.getEmail());
 					note.setSended(true);
 					service.getNote().update(note);
-				} catch (MessagingException | ParseException e) {
+					log.info("Email sended");
+				} catch (ParseException | MessagingException | UnirestException e) {
 					log.error(e.getMessage(), e);
 				} 
 			}			
