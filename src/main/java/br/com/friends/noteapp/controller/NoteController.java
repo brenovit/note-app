@@ -1,6 +1,7 @@
 package br.com.friends.noteapp.controller;
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,9 +39,9 @@ public class NoteController {
 	}
 	
 	@GetMapping(path = "/user/{id}" )
-	public ResponseEntity<?> listFromUser(@PathVariable String id){
-		NoteResponse response = noteService.getFromUserId(id);
-		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
+	public ResponseEntity<?> listFromUser(@PathVariable Long id){
+		List<NoteResponse> response = noteService.getFromUserId(id);
+		return new ResponseEntity<List<NoteResponse>>(response, HttpStatus.OK);
 	}
 	
 	@DeleteMapping(path="/{id}")

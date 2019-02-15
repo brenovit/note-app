@@ -2,6 +2,8 @@ package br.com.friends.noteapp.parser;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
@@ -55,5 +57,10 @@ public class NoteParser {
 			return NoteType.TASK;
 		}
 		return null;
+	}
+
+	public static List<NoteResponse> parse(List<Note> notes) {
+		List<NoteResponse> notesResponse = notes.stream().map(n -> parse(n)).collect(Collectors.toList());
+		return notesResponse;
 	}
 }

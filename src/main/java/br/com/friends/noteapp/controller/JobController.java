@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.friends.noteapp.job.ScheduledTasks;
-import br.com.friends.noteapp.job.model.IJobNew;
+import br.com.friends.noteapp.job.model.IJob;
 
 @RestController
 @RequestMapping("/jobs")
@@ -32,10 +32,10 @@ public class JobController {
 		return "OK";
 	}
 	
-	@GetMapping(value = "/list")
+	@GetMapping(value = "")
 	public ResponseEntity<?> list() {
-		Map<Object, IJobNew> scheduledTasks = ScheduledTasks.getScheduledTasks();
-		return new ResponseEntity<Map<Object, IJobNew>>(scheduledTasks, HttpStatus.OK);
+		Map<Object, IJob> scheduledTasks = ScheduledTasks.getScheduledTasks();
+		return new ResponseEntity<Map<Object, IJob>>(scheduledTasks, HttpStatus.OK);
 	}
 
 }

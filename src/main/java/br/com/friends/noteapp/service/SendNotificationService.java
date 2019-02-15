@@ -3,7 +3,6 @@ package br.com.friends.noteapp.service;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 
@@ -23,7 +22,7 @@ public class SendNotificationService {
 	private FacadeService service;
 	
 	public void execute() {
-		List<Note> notes = service.getNote().getAll().stream().filter(n -> !n.isSended()).collect(Collectors.toList());
+		List<Note> notes = service.getNote().findBySended(false);//.stream().filter(n -> !n.isSended()).collect(Collectors.toList());
 		for (Note note : notes) {
 			String alertDt = new DateTime(note.getAlertTime()).toString("dd/MM/yyyy HH:mm");
 			String actualDt = new DateTime(new Date()).toString("dd/MM/yyyy HH:mm");

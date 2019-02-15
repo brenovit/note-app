@@ -8,40 +8,31 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.friends.noteapp.job.model.IJobNew;
-import br.com.friends.noteapp.job.notification.Job1;
-import br.com.friends.noteapp.job.notification.Job2;
-import br.com.friends.noteapp.job.notification.Job3;
+import br.com.friends.noteapp.job.model.IJob;
+import br.com.friends.noteapp.job.notification.SendNotificationJob;
 import lombok.Getter;
 
 @Component
 public class ScheduledTasks {
 	
 	@Getter	
-	private static final Map<Object, IJobNew> scheduledTasks = new HashMap<Object, IJobNew>();
+	private static final Map<Object, IJob> scheduledTasks = new HashMap<Object, IJob>();
 	
 	@Autowired
-	private Job1 job1;
-
-	@Autowired
-	private Job2 job2;
+	private SendNotificationJob job1;
 	
-	@Autowired
-	private Job3 job3;
 	
 	@PostConstruct
 	private void initiate() {
 		scheduledTasks.put(job1.getName(), job1);
-		scheduledTasks.put(job2.getName(), job2);
-		scheduledTasks.put(job3.getName(), job3);
 	}
 	
-	public void start(String jobName) {
-		scheduledTasks.get(jobName).start();
+	public IJob start(String jobName) {
+		return scheduledTasks.get(jobName).start();
 	}
 
-	public void stop(String jobName) {
-		scheduledTasks.get(jobName).stop();
+	public IJob stop(String jobName) {
+		return scheduledTasks.get(jobName).stop();
 	}
 
 }

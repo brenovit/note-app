@@ -25,9 +25,9 @@ public class NoteService {
 		return NoteParser.parse(entity);
 	}
 	
-	public NoteResponse getFromUserId(String id) {
-		Note entity = noteRepository.findByUserId(id);
-		return NoteParser.parse(entity);
+	public List<NoteResponse> getFromUserId(Long id) {
+		List<Note> notes = noteRepository.findByUserId(id);
+		return NoteParser.parse(notes);
 	}
 	
 	public NoteResponse create(NoteRequest request) throws ParseException {
@@ -53,6 +53,10 @@ public class NoteService {
 
 	public List<Note> getAll() {
 		return noteRepository.findAll();
+	}
+
+	public List<Note> findBySended(boolean sended) {
+		return noteRepository.findBySended(sended);
 	}
 	
 }
