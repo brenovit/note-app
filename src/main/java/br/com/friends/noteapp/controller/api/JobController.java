@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.controller;
+package br.com.friends.noteapp.controller.api;
 
 import java.util.Map;
 

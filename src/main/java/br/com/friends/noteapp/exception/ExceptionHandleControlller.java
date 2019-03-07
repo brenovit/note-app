@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.controller;
+package br.com.friends.noteapp.exception;
 
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import br.com.friends.noteapp.exception.ApplicationException;
-import br.com.friends.noteapp.exception.ValidationException;
 import br.com.friends.noteapp.util.error.ApiErrors;
 import lombok.extern.log4j.Log4j2;
 
