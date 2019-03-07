@@ -1,12 +1,15 @@
 package br.com.friends.noteapp.service;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.user.UserRequest;
 import br.com.friends.noteapp.bean.user.UserResponse;
+import br.com.friends.noteapp.domain.role.RoleRepository;
 import br.com.friends.noteapp.domain.user.User;
 import br.com.friends.noteapp.domain.user.UserRepository;
 import br.com.friends.noteapp.parser.UserParser;
@@ -15,15 +18,28 @@ import br.com.friends.noteapp.parser.UserParser;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
-	
-	public UserResponse get(Long id) {
+	@Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+	public UserResponse findById(Long id) {
 		Optional<User> optional = userRepository.findById(id);
 		User entity = optional.get();
 		return UserParser.parse(entity);	
 	}
 	
-	public UserResponse create(UserRequest request) {
+	public UserResponse save(UserRequest request) {
 		User entity = UserParser.parser(request);
+		entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
+		entity.setRoles(new HashSet<>(roleRepository.findAll()));
+		entity = userRepository.save(entity);
+		return UserParser.parse(entity);	
+	}
+	
+	public UserResponse save(User entity) {
+		entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
+		entity.setRoles(new HashSet<>(roleRepository.findAll()));
 		entity = userRepository.save(entity);
 		return UserParser.parse(entity);	
 	}
@@ -37,4 +53,8 @@ public class UserService {
 		entity = userRepository.save(entity);
 		return UserParser.parse(entity);
 	}
+	
+    public User findByLogin(String login) {
+        return userRepository.findByLogin(login);
+    }
 }

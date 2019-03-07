@@ -15,7 +15,6 @@
 		<div class="page">
 			<h1 class="splash" style="text-align: center;">API NotaAqui</h1>
 			<p class="splash" style="text-align: center;">NotaAqui API, version: ${version}</p>
-			<p class="splash" style="text-align: center;">${mensagem}</p>
 		</div>
 	</div>
 </body>

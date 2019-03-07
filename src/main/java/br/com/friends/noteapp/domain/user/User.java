@@ -1,11 +1,16 @@
 package br.com.friends.noteapp.domain.user;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import br.com.friends.noteapp.domain.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +29,16 @@ public class User {
 	
 	private String name;
 	private String login;
-	private String password;
 	private String email;
 	private String avatar;
+	
+	private String password;
+	@Transient
+    private String passwordConfirm;
+
+    @ManyToMany
+    private Set<Role> roles;
+	
 	
 	public User id(long id) {
 		this.id = id;

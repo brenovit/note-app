@@ -24,13 +24,13 @@ public class UserController {
 	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody UserRequest request){
-		UserResponse response = userService.create(request);
+		UserResponse response = userService.save(request);
 		return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "/{id}" )
 	public ResponseEntity<?> read(@PathVariable Long id){
-		UserResponse response = userService.get(id);
+		UserResponse response = userService.findById(id);
 		return new ResponseEntity<UserResponse>(response, HttpStatus.OK);
 	}
 	
