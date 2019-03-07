@@ -16,8 +16,8 @@ public class UserControllerMVC {
 
 	@GetMapping(path = "")
 	public String settings(Model model) {
-		model.addAttribute("mensagem", mensagem);
 		mensagem = "Eu sou o user";
+		model.addAttribute("mensagem", mensagem);
 		return "user/settings";
 	}
 

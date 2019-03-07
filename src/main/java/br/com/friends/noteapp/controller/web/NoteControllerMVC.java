@@ -16,8 +16,8 @@ public class NoteControllerMVC {
 
 	@GetMapping(path = "")
 	public String list(Model model) {
-		model.addAttribute("mensagem", mensagem);
 		mensagem = "Eu sou o note";
+		model.addAttribute("mensagem", mensagem);
 		return "note/list";
 	}
 

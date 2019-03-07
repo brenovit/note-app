@@ -12,24 +12,12 @@
 <script src="resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div>
-		<h1>API NotaAqui</h1>
-		<h2>Login</h2>
-		<form:form method="POST" action="/notaaqui/login" modelAttribute="login">
-			<div>
-				<form:input type="text" id="username" path="username"
-					placeholder="Email/Username" value="breno"/>
-				<br />
-			</div>
-			<div>
-				<form:input type="password" id="password" path="password"
-					placeholder="Password" value="123" />
-				<br />
-			</div>
-			<div>
-				<input type="submit" id="submit" value="Login" />
-			</div>
-		</form:form>
-	</div>
-</body>
+        <h3>Error</h3>
+        <p>${ error }</p>
+        <table>
+            <tr>
+                <td><a href="">Retry</a></td>
+            </tr>
+        </table>
+    </body>
 </html>

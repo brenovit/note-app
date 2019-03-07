@@ -3,7 +3,7 @@
 
 	<Properties>
 		<Property name="FILE_NAME">
-			./log/NotaAqui.
+			./log/NotaAqui.log
 		</Property>
 		<Property name="FILE_PATTERN">
 			./log/old/%d{yyyy-MM-dd}.NotaAqui.log
@@ -16,21 +16,7 @@
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
 			<PatternLayout pattern="${LOG_PATTERN}" />
-		</Console>
-		<RollingFile name="File1" fileName="${FILE_NAME}File1.log"
-			filePattern="${FILE_PATTERN}">
-			<PatternLayout pattern="${LOG_PATTERN}" />
-			<Policies>
-				<TimeBasedTriggeringPolicy />
-			</Policies>
-		</RollingFile>
-		<RollingFile name="File2" fileName="${FILE_NAME}File2.log"
-			filePattern="${FILE_PATTERN}">
-			<PatternLayout pattern="${LOG_PATTERN}" />
-			<Policies>
-				<TimeBasedTriggeringPolicy />
-			</Policies>
-		</RollingFile>
+		</Console>		
 	</Appenders>
 
 	<Loggers>
@@ -38,17 +24,7 @@
 		<!-- Log for customns package -->
 		<Logger name="br.com.friends" level="DEBUG" additivity="false">
 			<AppenderRef ref="Console" />			
-		</Logger>
-		
-		<Logger name="br.com.friends.noteapp.log4j2.File1" level="DEBUG" additivity="false">
-			<AppenderRef ref="Console" />
-			<AppenderRef ref="File1" />			
-		</Logger>
-		<Logger name="br.com.friends.noteapp.log4j2.File2" level="DEBUG" additivity="false">
-			<AppenderRef ref="Console" />
-			<AppenderRef ref="File2" />			
-		</Logger>
-		
+		</Logger>	
 		
 		<Root level="INFO">
 			<AppenderRef ref="Console" />			

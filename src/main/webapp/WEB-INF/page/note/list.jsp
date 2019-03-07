@@ -11,12 +11,9 @@
 <script src="resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="page-container">
-		<div class="page">
-			<h1 class="splash" style="text-align: center;">API NotaAqui</h1>
-			<p class="splash" style="text-align: center;">NotaAqui API, version: ${version}</p>
-			<p class="splash" style="text-align: center;">${mensagem}</p>
-		</div>
+	<div>
+		<p>${ username }</p>
+		<p>${ password }</p>
 	</div>
 </body>
 </html>
