@@ -2,7 +2,7 @@ package br.com.friends.noteapp.parser;
 
 import br.com.friends.noteapp.bean.user.UserRequest;
 import br.com.friends.noteapp.bean.user.UserResponse;
-import br.com.friends.noteapp.domain.user.User;
+import br.com.friends.noteapp.persistence.user.User;
 
 public class UserParser {
 	

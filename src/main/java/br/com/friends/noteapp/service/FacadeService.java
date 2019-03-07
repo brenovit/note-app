@@ -1,12 +1,14 @@
 package br.com.friends.noteapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 
 @Getter
 @Component
+@Primary
 public class FacadeService {
 	
 	@Autowired
@@ -19,5 +21,6 @@ public class FacadeService {
 	private UserService user;
 	@Autowired
 	private SendNotificationService notification;
-	
+	@Autowired
+	private SecurityService security;
 }

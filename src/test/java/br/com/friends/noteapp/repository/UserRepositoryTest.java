@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.friends.noteapp.domain.user.User;
-import br.com.friends.noteapp.domain.user.UserRepository;
+import br.com.friends.noteapp.persistence.user.User;
+import br.com.friends.noteapp.persistence.user.UserRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

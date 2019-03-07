@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
-import br.com.friends.noteapp.domain.note.Note;
-import br.com.friends.noteapp.domain.user.User;
+import br.com.friends.noteapp.persistence.note.Note;
+import br.com.friends.noteapp.persistence.user.User;
 
 public class NoteParser {
 	

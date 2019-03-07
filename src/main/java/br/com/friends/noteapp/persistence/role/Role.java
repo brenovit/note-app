@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.role;
+package br.com.friends.noteapp.persistence.role;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import br.com.friends.noteapp.domain.user.User;
+import br.com.friends.noteapp.persistence.user.User;
 
 @Entity
 @Table(name = "role")

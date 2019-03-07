@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.task;
+package br.com.friends.noteapp.persistence.task;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

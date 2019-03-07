@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.note;
+package br.com.friends.noteapp.persistence.note;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.friends.noteapp.bean.dto.NoteType;
-import br.com.friends.noteapp.domain.user.User;
+import br.com.friends.noteapp.persistence.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.user;
+package br.com.friends.noteapp.persistence.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

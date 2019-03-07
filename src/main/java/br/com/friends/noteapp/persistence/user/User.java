@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.user;
+package br.com.friends.noteapp.persistence.user;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import br.com.friends.noteapp.domain.role.Role;
+import br.com.friends.noteapp.persistence.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

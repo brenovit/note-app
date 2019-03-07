@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.note;
+package br.com.friends.noteapp.persistence.note;
 
 import java.util.List;
 

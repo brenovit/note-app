@@ -6,7 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import br.com.friends.noteapp.domain.user.User;
+import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.service.UserService;
 
 @Component

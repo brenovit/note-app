@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.friends.noteapp.domain.user.User;
+import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.service.SecurityService;
 import br.com.friends.noteapp.service.UserService;
 import br.com.friends.noteapp.validator.UserValidator;

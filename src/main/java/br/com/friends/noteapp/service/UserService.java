@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.user.UserRequest;
 import br.com.friends.noteapp.bean.user.UserResponse;
-import br.com.friends.noteapp.domain.role.RoleRepository;
-import br.com.friends.noteapp.domain.user.User;
-import br.com.friends.noteapp.domain.user.UserRepository;
 import br.com.friends.noteapp.parser.UserParser;
+import br.com.friends.noteapp.persistence.role.RoleRepository;
+import br.com.friends.noteapp.persistence.user.User;
+import br.com.friends.noteapp.persistence.user.UserRepository;
 
 @Service
-public class UserService {
+public class UserService extends FacadeService {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired

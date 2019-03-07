@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.task;
+package br.com.friends.noteapp.persistence.task;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.ColumnDefault;
 
-import br.com.friends.noteapp.domain.note.Note;
+import br.com.friends.noteapp.persistence.note.Note;
 import lombok.Data;
 
 @Data

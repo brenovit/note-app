@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.domain.role;
+package br.com.friends.noteapp.persistence.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
