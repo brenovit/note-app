@@ -11,7 +11,7 @@ public class UserParser {
 		response.setAvatar(entity.getAvatar());
 		response.setEmail(entity.getEmail());
 		response.setId(entity.getId());
-		response.setLogin(entity.getLogin());
+		response.setLogin(entity.getUsername());
 		response.setName(entity.getName());
 		return response;
 	}
@@ -20,7 +20,7 @@ public class UserParser {
 		User entity = new User();
 		entity.setEmail(request.getEmail());
 		entity.setPassword(request.getPassword());
-		entity.setLogin(request.getLogin());
+		entity.setUsername(request.getLogin());
 		entity.setName(request.getName());
 		return entity;
 	}

@@ -22,9 +22,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private FacadeService facade;
 	
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String login) {
-        User user = facade.getUser().findByLogin(login);
-        if (user == null) throw new UsernameNotFoundException(login);
+    public UserDetails loadUserByUsername(String username) {
+        User user = facade.getUser().findByUsername(username);
+        if (user == null) throw new UsernameNotFoundException(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         for (Role role : user.getRoles()){
@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         
 
-        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
 
     }
 }

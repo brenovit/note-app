@@ -36,7 +36,7 @@ public class AccessControllerMVC {
         }
         
     	accessService.save(userForm);
-        accessService.autoLogin(userForm.getLogin(), userForm.getPasswordConfirm());
+        accessService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/welcome";
     }
