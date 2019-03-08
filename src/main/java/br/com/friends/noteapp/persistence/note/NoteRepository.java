@@ -12,4 +12,11 @@ public interface NoteRepository extends JpaRepository<Note, Long>{
 	List<Note> findByUserId(@Param("idUser") Long id);
 
 	List<Note> findBySended(@Param("sended") boolean sended);
+	
+	@Query(nativeQuery= true, value =
+			"SELECT * "
+			+ "FROM T_NOTE n "
+			+ "INNER JOIN T_USER u ON n.IDUSER = u.IDUSER "
+			+ "WHERE u.USERNAME = :username")
+	List<Note> findByUserUsername(@Param("username") String username);
 }

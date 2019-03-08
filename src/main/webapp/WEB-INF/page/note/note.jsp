@@ -18,7 +18,20 @@
 
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
         <div><img id="demo-image" src="https://api.adorable.io/avatars/285/${pageContext.request.userPrincipal.name}.png" style="width: 285px; height: 285px; border-radius: 50%;" alt="demo-image"></div>
+        <a href="<c:url value="/settings" />">Settings</a>  
+        
     </c:if>
+    <div>Ola ${ nome }</div>
+    <c:forEach items="${ notes }" var="note">
+    	<div>
+    		<p>${ note.title }</p>
+    		<p>${ note.body }</p>
+    		<p>${ note.color }</p>
+    		<p>${ note.alertTime }</p>
+    		<p>${ note.sended }</p>
+    		<br />
+    	</div>
+    </c:forEach>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

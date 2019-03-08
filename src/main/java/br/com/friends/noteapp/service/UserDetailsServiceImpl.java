@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     
 	@Autowired
 	private FacadeService facade;
-	
+		
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
         User user = facade.getUser().findByUsername(username);

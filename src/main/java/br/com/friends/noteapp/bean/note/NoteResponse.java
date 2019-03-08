@@ -18,5 +18,6 @@ public class NoteResponse {
 	private String gift;
 	private String locationParty;
 	private String sended;
+	private String alertTime;
 
 }

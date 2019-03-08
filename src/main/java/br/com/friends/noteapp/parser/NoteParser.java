@@ -26,6 +26,7 @@ public class NoteParser {
 		response.setType(entity.getType());
 		response.setUserId(entity.getUser().getId());
 		response.setSended(String.valueOf(entity.isSended()));
+		response.setAlertTime(entity.getAlertTime().toString());
 		return response;
 	}
 	

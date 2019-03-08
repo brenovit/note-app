@@ -22,11 +22,11 @@ public class UserService extends FacadeService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     
-	public UserResponse findById(Long id) {
+	public UserResponse getById(Long id) {
 		Optional<User> optional = userRepository.findById(id);
 		User entity = optional.get();
 		entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
-		return UserParser.parse(entity);	
+		return UserParser.parse(entity);
 	}
 	
 	public UserResponse save(UserRequest request) {		
@@ -49,8 +49,14 @@ public class UserService extends FacadeService {
 		entity = userRepository.save(entity);
 		return UserParser.parse(entity);
 	}
+		
+	public UserResponse getByUsername(String username) {		
+		User entity = findByUsername(username);		
+		return UserParser.parse(entity);
+    }
 	
-	public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+	public User findByUsername(String username) {		
+		User entity = userRepository.findByUsername(username);
+		return entity;
     }
 }

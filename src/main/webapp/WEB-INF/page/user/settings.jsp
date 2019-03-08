@@ -13,9 +13,9 @@
 <body>
 	<div class="page-container">
 		<div class="page">
-			<h1 class="splash" style="text-align: center;">API NotaAqui</h1>
-			<p class="splash" style="text-align: center;">NotaAqui API, version: ${version}</p>
-			<p class="splash" style="text-align: center;">${mensagem}</p>
+			<h1 class="splash" style="text-align: center;">Settings</h1>
+			<p>${ nome }</p>
+			<p>${ email }</p>
 		</div>
 	</div>
 </body>

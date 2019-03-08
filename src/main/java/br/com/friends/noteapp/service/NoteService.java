@@ -58,5 +58,10 @@ public class NoteService {
 	public List<Note> findBySended(boolean sended) {
 		return noteRepository.findBySended(sended);
 	}
+
+	public List<NoteResponse> getFromUserUsername(String username) {
+		List<Note> notes = noteRepository.findByUserUsername(username);
+		return NoteParser.parse(notes);
+	}
 	
 }

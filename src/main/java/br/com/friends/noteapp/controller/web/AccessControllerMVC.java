@@ -1,5 +1,7 @@
 package br.com.friends.noteapp.controller.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +40,7 @@ public class AccessControllerMVC {
     	accessService.save(userForm);
         accessService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        return "redirect:/index";
     }
 
     @GetMapping("/login")
@@ -50,11 +52,6 @@ public class AccessControllerMVC {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
-    }
-
-    @GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
-        return "note/note";
-    }
+    }   
 	
 }
