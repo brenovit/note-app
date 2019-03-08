@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <title>Create an account</title>
+      <title>Registration | NotaAqui</title>
 
       <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
       <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -43,6 +43,7 @@
             </spring:bind>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            <h4 class="text-center"><a href="${contextPath}/login">Log In</a></h4>            
         </form:form>
 
     </div>

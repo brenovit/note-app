@@ -35,8 +35,6 @@ public class EmailSenderService {
 		if (jsonResponse.getStatus() == HttpStatus.SC_OK) {
 			return;
 		}
-
-		JSONObject responseJson = jsonResponse.getBody().getObject();
 	}
 
 	public void sendMail(String subject, String body, String to) throws MessagingException, UnirestException {

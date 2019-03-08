@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<title>NoteApp</title>
+<title>API | NotaAqui</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <script src="resources/js/bootstrap.min.js"></script>

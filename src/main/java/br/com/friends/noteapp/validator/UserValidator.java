@@ -25,10 +25,10 @@ public class UserValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "NotEmpty");
         if (user.getLogin().length() < 5 || user.getLogin().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
+            errors.rejectValue("login", "Size.userForm.username");
         }
         if (userService.findByLogin(user.getLogin()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+            errors.rejectValue("login", "Duplicate.userForm.username");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import lombok.Getter;
 
 @Getter
-@Component
 @Primary
+@Component
 public class FacadeService {
 	
 	@Autowired
@@ -20,7 +20,7 @@ public class FacadeService {
 	@Autowired	
 	private UserService user;
 	@Autowired
-	private SendNotificationService notification;
+	private SendNotificationService notification;	
 	@Autowired
-	private SecurityService security;
+	private RoleService role;
 }

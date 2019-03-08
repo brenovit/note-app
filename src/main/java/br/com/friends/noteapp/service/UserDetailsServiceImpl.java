@@ -3,6 +3,7 @@ package br.com.friends.noteapp.service;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,11 +16,14 @@ import br.com.friends.noteapp.persistence.role.Role;
 import br.com.friends.noteapp.persistence.user.User;
 
 @Service
-public class UserDetailsServiceImpl extends FacadeService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
     
+	@Autowired
+	private FacadeService facade;
+	
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) {
-        User user = getUser().findByLogin(login);
+        User user = facade.getUser().findByLogin(login);
         if (user == null) throw new UsernameNotFoundException(login);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

@@ -9,40 +9,34 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.friends.noteapp.persistence.user.User;
-import br.com.friends.noteapp.service.SecurityService;
-import br.com.friends.noteapp.service.UserService;
+import br.com.friends.noteapp.service.AccessService;
 import br.com.friends.noteapp.validator.UserValidator;
 
 @Controller
-public class UserControllerMVC {
+public class AccessControllerMVC {
 	
 	@Autowired
-    private UserService userService;
-
-    @Autowired
-    private SecurityService securityService;
-
+    private AccessService accessService;
+	
     @Autowired
     private UserValidator userValidator;
 
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
-
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
-
-        if (bindingResult.hasErrors()) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {    	
+    	userValidator.validate(userForm, bindingResult);
+        
+    	if (bindingResult.hasErrors()) {
             return "registration";
         }
-
-        userService.save(userForm);
-
-        securityService.autoLogin(userForm.getLogin(), userForm.getPasswordConfirm());
+        
+    	accessService.save(userForm);
+        accessService.autoLogin(userForm.getLogin(), userForm.getPasswordConfirm());
 
         return "redirect:/welcome";
     }
@@ -60,7 +54,7 @@ public class UserControllerMVC {
 
     @GetMapping({"/", "/welcome"})
     public String welcome(Model model) {
-        return "welcome";
+        return "note/note";
     }
 	
 }

@@ -18,22 +18,19 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Service
 public class SendNotificationService extends FacadeService{
-	
-	
+		
 	public void execute() {
-		List<Note> notes = getNote().findBySended(false);//.stream().filter(n -> !n.isSended()).collect(Collectors.toList());
+		List<Note> notes = getNote().findBySended(false);
 		for (Note note : notes) {
 			String alertDt = new DateTime(note.getAlertTime()).toString("dd/MM/yyyy HH:mm");
 			String actualDt = new DateTime(new Date()).toString("dd/MM/yyyy HH:mm");
 			
-			if(alertDt.equals(actualDt)) {
-				log.info("Alert: "+alertDt + " Actual: "+actualDt);
+			if(alertDt.equals(actualDt)) {				
 				User user = note.getUser();
 				try {
 					getEmailSender().sendMail(note.getTitle(),note.getBody(), user.getEmail());
 					note.setSended(true);
-					getNote().update(note);
-					log.info("Email sended");
+					getNote().update(note);					
 				} catch (ParseException | MessagingException | UnirestException e) {
 					log.error(e.getMessage(), e);
 				} 

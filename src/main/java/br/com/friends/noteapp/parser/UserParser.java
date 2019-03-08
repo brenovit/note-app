@@ -16,7 +16,7 @@ public class UserParser {
 		return response;
 	}
 	
-	public static User parser(UserRequest request) {
+	public static User parse(UserRequest request) {
 		User entity = new User();
 		entity.setEmail(request.getEmail());
 		entity.setPassword(request.getPassword());
