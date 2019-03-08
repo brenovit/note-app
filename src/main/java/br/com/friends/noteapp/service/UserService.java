@@ -50,7 +50,7 @@ public class UserService extends FacadeService {
 		return UserParser.parse(entity);
 	}
 	
-    public User findByLogin(String login) {
-        return userRepository.findByLogin(login);
+	public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
