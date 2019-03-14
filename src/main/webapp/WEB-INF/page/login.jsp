@@ -22,8 +22,12 @@
 	name="viewport">
 <title>Sing In | NotaAqui</title>
 <!-- Favicon-->
-<link rel="icon" href="${contextPath}/resources/favicon.ico"
-	type="image/x-icon">
+<link rel="icon" href="${contextPath}/resources/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="${contextPath}/resources/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="${contextPath}/resources/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="${contextPath}/resources/favicon-16x16.png">
+<link rel="manifest" href="${contextPath}/resources/site.webmanifest">
+
 <!-- Google Fonts -->
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext"
