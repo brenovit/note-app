@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <html>
 <head>
@@ -15,6 +16,7 @@
 		<div class="page">
 			<h1 class="splash" style="text-align: center;">API NotaAqui</h1>
 			<p class="splash" style="text-align: center;">NotaAqui API, version: ${version}</p>
+			<a href="${contextPath}/login">Note Page</a>
 		</div>
 	</div>
 </body>
