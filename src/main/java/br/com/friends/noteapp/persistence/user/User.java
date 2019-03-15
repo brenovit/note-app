@@ -43,6 +43,5 @@ public class User {
 	public User id(long id) {
 		this.id = id;
 		return this;
-	}
-	
+	}	
 }

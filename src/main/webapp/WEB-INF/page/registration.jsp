@@ -7,20 +7,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Login | NotaAqui</title>
-
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-</head>
-
-<head>
 <meta charset="UTF-8">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Sing In | NotaAqui</title>
+<title>Sing Up | NotaAqui</title>
 <!-- Favicon-->
 <link rel="icon" href="${contextPath}/resources/favicon.ico"
 	type="image/x-icon">
@@ -51,8 +42,9 @@
 <body class="signup-page">
 	<div class="signup-box">
 		<div class="logo">
-			<a href="javascript:void(0);">Admin<b>BSB</b></a> <small>Admin
-				BootStrap Based - Material Design</small>
+			<a href="javascript:void(0);">
+				<img src="${contextPath}/resources/logo-via-logohub.png" alt="Nota Aqui" width="100%"|/>
+			</a>
 		</div>
 		<div class="card">
 			<div class="body">

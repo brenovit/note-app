@@ -1,6 +1,5 @@
 package br.com.friends.noteapp.controller.web;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,14 @@ public class UserControllerMVC {
 	private UserService service;
 	
 	@GetMapping("/settings")
-    public String welcome(Model model, HttpServletRequest request, HttpSession session) {
+    public String settings(Model model, HttpSession session) {
 		
-		String username = request.getAttribute("userPrincipal.name").toString();
-		UserResponse user = service.getByUsername(username);
-		session.setAttribute("userId", user);
-    	model.addAttribute("user",user);    	
+		Object attribute = session.getAttribute("userKey");		
+		Long userKey = Long.parseLong((String) attribute);
+		
+		UserResponse user = service.getById(userKey);		
+    	model.addAttribute("user",user);
+    	
         return "user/settings";
 	}	
 	

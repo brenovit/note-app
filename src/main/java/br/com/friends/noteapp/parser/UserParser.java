@@ -13,6 +13,7 @@ public class UserParser {
 		response.setId(entity.getId());
 		response.setLogin(entity.getUsername());
 		response.setName(entity.getName());
+		response.setPassword(entity.getPassword());
 		return response;
 	}
 	

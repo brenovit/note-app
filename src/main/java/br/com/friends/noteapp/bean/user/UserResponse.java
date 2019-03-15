@@ -9,4 +9,5 @@ public class UserResponse {
 	private String login;
 	private String email;
 	private String avatar;
+	private String password;
 }

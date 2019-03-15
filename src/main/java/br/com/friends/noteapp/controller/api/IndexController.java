@@ -1,4 +1,4 @@
-package br.com.friends.noteapp.controller.web;
+package br.com.friends.noteapp.controller.api;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

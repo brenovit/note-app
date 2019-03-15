@@ -1,6 +1,6 @@
 package br.com.friends.noteapp.controller.web;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,16 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.service.AccessService;
-import br.com.friends.noteapp.validator.UserValidator;
 
 @Controller
 public class AccessControllerMVC {
 	
 	@Autowired
     private AccessService accessService;
-	
-    @Autowired
-    private UserValidator userValidator;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -30,17 +26,12 @@ public class AccessControllerMVC {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {    	
-    	userValidator.validate(userForm, bindingResult);
-        
-    	if (bindingResult.hasErrors()) {
-            return "registration";
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, HttpSession session) {
+    	if(accessService.registration(userForm, bindingResult, session)) {
+    		return "redirect:/index";
         }
-        
-    	accessService.save(userForm);
-        accessService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
-
-        return "redirect:/index";
+    	
+    	return "registration";
     }
 
     @GetMapping("/login")

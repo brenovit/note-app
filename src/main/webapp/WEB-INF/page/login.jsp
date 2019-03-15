@@ -7,15 +7,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Login | NotaAqui</title>
-
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-</head>
-
-<head>
 <meta charset="UTF-8">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -37,7 +28,7 @@
 
 <!-- Bootstrap Core Css -->
 <link
-	href="${contextPath}/resources/plugins/bootstrap/css/bootstrap.css"
+	href="${contextPath}/resources/plugins/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Waves Effect Css -->
@@ -55,7 +46,9 @@
 <body class="login-page">
 	<div class="login-box">
 		<div class="logo">
-			<a href="javascript:void(0);">Nota<b>Aqui</b></a>
+			<a href="javascript:void(0);">
+				<img src="${contextPath}/resources/logo-via-logohub.png" alt="Nota Aqui" width="100%"/>
+			</a>
 		</div>
 		<div class="card">
 			<div class="body">

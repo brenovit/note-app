@@ -29,15 +29,16 @@ public class UserService extends FacadeService {
 		return UserParser.parse(entity);
 	}
 	
-	public UserResponse save(UserRequest request) {		
-		return save(UserParser.parse(request));	
+	public UserResponse save(UserRequest request) {
+		User user = save(UserParser.parse(request));
+		return UserParser.parse(user);
 	}
 	
-	public UserResponse save(User entity) {
+	public User save(User entity) {
 		entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
 		entity.setRoles(new HashSet<>(getRole().findAll()));
 		entity = userRepository.save(entity);
-		return UserParser.parse(entity);	
+		return entity;	
 	}
 
 	public void delete(Long id) {
