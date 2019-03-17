@@ -43,7 +43,7 @@
 	<div class="signup-box">
 		<div class="logo">
 			<a href="javascript:void(0);">
-				<img src="${contextPath}/resources/logo-via-logohub.png" alt="Nota Aqui" width="100%"|/>
+				<img src="${contextPath}/resources/logo-via-logohub.png" alt="Nota Aqui" width="100%"/>
 			</a>
 		</div>
 		<div class="card">
@@ -51,15 +51,15 @@
 				<form:form method="POST" modelAttribute="userForm"
 					class="form-signin" id="sign_up">
 					<div class="msg">Register a new membership</div>
-
-					<spring:bind path="username">
+					
+					<spring:bind path="name">
 						<div class="input-group ${status.error ? 'has-error' : ''}">
 							<span class="input-group-addon"> <i class="material-icons">person</i>
 							</span>
 							<div class="form-line">
-								<form:input type="text" path="username" class="form-control"
-									placeholder="Username" autofocus="true" required="true"></form:input>
-								<form:errors path="username"></form:errors>
+								<form:input type="text" path="name" class="form-control"
+									placeholder="Name" autofocus="true" required="true"></form:input>
+								<form:errors path="name"></form:errors>
 							</div>
 						</div>
 					</spring:bind>
@@ -75,7 +75,19 @@
 							<form:errors path="email"></form:errors>
 						</div>
 					</spring:bind>
-
+					
+					<spring:bind path="username">
+						<div class="input-group ${status.error ? 'has-error' : ''}">
+							<span class="input-group-addon"> <i class="material-icons">account_box</i>
+							</span>
+							<div class="form-line">
+								<form:input type="text" path="username" class="form-control"
+									placeholder="Username" autofocus="true" required="true"></form:input>
+								<form:errors path="username"></form:errors>
+							</div>
+						</div>
+					</spring:bind>
+										
 					<spring:bind path="password">
 						<div class="input-group ${status.error ? 'has-error' : ''}">
 							<span class="input-group-addon"> <i class="material-icons">lock</i>

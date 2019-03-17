@@ -2,15 +2,11 @@ package br.com.friends.noteapp.service;
 
 import java.text.ParseException;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import br.com.friends.noteapp.bean.note.NoteRequest;
-import br.com.friends.noteapp.bean.user.UserResponse;
-import br.com.friends.noteapp.parser.UserParser;
 import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.validator.UserValidator;
 import lombok.SneakyThrows;
@@ -35,6 +31,7 @@ public class AccessService extends FacadeService{
 		request.setColor("red");
 		request.setUserId(user.getId());
 		getNote().create(request);
+		
 		request.setTitle("Trabalho - Session");
 		request.setBody("Implementar o uso de Sessão na aplicação (HTTPSession");
 		request.setTime("20/03/2019 09:00");
@@ -50,7 +47,7 @@ public class AccessService extends FacadeService{
 		security.autoLogin(username, password);
 	}
 
-	public boolean registration(User userForm, BindingResult bindingResult, HttpSession session) {
+	public boolean registration(User userForm, BindingResult bindingResult) {
     	userValidator.validate(userForm, bindingResult);
 
 		if (bindingResult.hasErrors()) {
@@ -59,8 +56,7 @@ public class AccessService extends FacadeService{
 		//Alterar isso
 		String password = userForm.getPassword();
 		
-		User user = save(userForm);
-    	session.setAttribute("userKey", user.getId());
+		save(userForm);
     	//Alterar isso
     	autoLogin(userForm.getUsername(), password);
     	

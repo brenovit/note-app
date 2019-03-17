@@ -11,7 +11,7 @@ public class UserParser {
 		response.setAvatar(entity.getAvatar());
 		response.setEmail(entity.getEmail());
 		response.setId(entity.getId());
-		response.setLogin(entity.getUsername());
+		response.setUsername(entity.getUsername());
 		response.setName(entity.getName());
 		response.setPassword(entity.getPassword());
 		return response;

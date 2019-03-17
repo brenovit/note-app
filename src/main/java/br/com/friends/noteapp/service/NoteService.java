@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
+import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.parser.NoteParser;
 import br.com.friends.noteapp.persistence.note.Note;
 import br.com.friends.noteapp.persistence.note.NoteRepository;
 
 @Service
-public class NoteService {
+public class NoteService extends FacadeService{
 
 	@Autowired
 	private NoteRepository noteRepository;
@@ -62,6 +63,11 @@ public class NoteService {
 	public List<NoteResponse> getFromUserUsername(String username) {
 		List<Note> notes = noteRepository.findByUserUsername(username);
 		return NoteParser.parse(notes);
+	}
+
+	public UserResponse getUserFromUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

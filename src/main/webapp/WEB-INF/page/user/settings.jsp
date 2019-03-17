@@ -1,5 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -119,13 +121,21 @@
 	                                </ul>
 	
 	                                <div class="tab-content">
-	                                    <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
-	                                        <form class="form-horizontal">
+	                                    <div role="tabpanel" class="tab-pane fade in active" id="profile_settings">
+	                                    	<form:form method="POST" modelAttribute="userForm" class="form-horizontal" id="settings">
 	                                            <div class="form-group">
-	                                                <label for="NameSurname" class="col-sm-2 control-label">Name Surname</label>
+	                                                <label for="NameSurname" class="col-sm-2 control-label">Name</label>
 	                                                <div class="col-sm-10">
 	                                                    <div class="form-line">
-	                                                        <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="Marc K. Hammond" required>
+	                                                        <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="${ user.name }" required>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="form-group">
+	                                                <label for="NameSurname" class="col-sm-2 control-label">Username</label>
+	                                                <div class="col-sm-10">
+	                                                    <div class="form-line">
+	                                                        <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" value="${ user.username }" required>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -133,75 +143,57 @@
 	                                                <label for="Email" class="col-sm-2 control-label">Email</label>
 	                                                <div class="col-sm-10">
 	                                                    <div class="form-line">
-	                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="example@example.com" required>
+	                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="${ user.email }" required>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
-	                                            <div class="form-group">
-	                                                <label for="InputExperience" class="col-sm-2 control-label">Experience</label>
-	
-	                                                <div class="col-sm-10">
-	                                                    <div class="form-line">
-	                                                        <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3" placeholder="Experience"></textarea>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                            <div class="form-group">
-	                                                <label for="InputSkills" class="col-sm-2 control-label">Skills</label>
-	
-	                                                <div class="col-sm-10">
-	                                                    <div class="form-line">
-	                                                        <input type="text" class="form-control" id="InputSkills" name="InputSkills" placeholder="Skills">
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	
-	                                            <div class="form-group">
-	                                                <div class="col-sm-offset-2 col-sm-10">
-	                                                    <input type="checkbox" id="terms_condition_check" class="chk-col-red filled-in" />
-	                                                    <label for="terms_condition_check">I agree to the <a href="#">terms and conditions</a></label>
-	                                                </div>
-	                                            </div>
+	                                                                                        
 	                                            <div class="form-group">
 	                                                <div class="col-sm-offset-2 col-sm-10">
 	                                                    <button type="submit" class="btn btn-danger">SUBMIT</button>
 	                                                </div>
 	                                            </div>
-	                                        </form>
+	                                        </form:form>
 	                                    </div>
 	                                    <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
-	                                        <form class="form-horizontal">
+	                                        <form:form method="POST" modelAttribute="passForm" class="form-horizontal" id="updatePass" action="updatePassword">
+	                                        	<spring:bind path="oldPassword">
 	                                            <div class="form-group">
 	                                                <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
 	                                                <div class="col-sm-9">
 	                                                    <div class="form-line">
-	                                                        <input type="password" class="form-control" id="OldPassword" name="OldPassword" placeholder="Old Password" required>
+	                                                        <form:input type="password" class="form-control" path="oldPassword" id="OldPassword" name="OldPassword" placeholder="Old Password" required="true" />
 	                                                    </div>
 	                                                </div>
 	                                            </div>
+	                                            </spring:bind>/
+	                                          	<spring:bind path="newPassword">
 	                                            <div class="form-group">
 	                                                <label for="NewPassword" class="col-sm-3 control-label">New Password</label>
 	                                                <div class="col-sm-9">
 	                                                    <div class="form-line">
-	                                                        <input type="password" class="form-control" id="NewPassword" name="NewPassword" placeholder="New Password" required>
+	                                                        <form:input type="password" class="form-control" path="newPassword" id="NewPassword" name="NewPassword" placeholder="New Password" required="true" />
 	                                                    </div>
 	                                                </div>
 	                                            </div>
+	                                            </spring:bind>
+	                                            <spring:bind path="confirmPassword">
 	                                            <div class="form-group">
 	                                                <label for="NewPasswordConfirm" class="col-sm-3 control-label">New Password (Confirm)</label>
 	                                                <div class="col-sm-9">
 	                                                    <div class="form-line">
-	                                                        <input type="password" class="form-control" id="NewPasswordConfirm" name="NewPasswordConfirm" placeholder="New Password (Confirm)" required>
+	                                                        <form:input type="password" class="form-control" path="confirmPassword" id="NewPasswordConfirm" name="NewPasswordConfirm" placeholder="New Password (Confirm)" required="true" />
 	                                                    </div>
 	                                                </div>
 	                                            </div>
+	                                            </spring:bind>
 	
 	                                            <div class="form-group">
 	                                                <div class="col-sm-offset-3 col-sm-9">
 	                                                    <button type="submit" class="btn btn-danger">SUBMIT</button>
 	                                                </div>
 	                                            </div>
-	                                        </form>
+	                                        </form:form>
 	                                    </div>
 	                                </div>
 	                            </div>
