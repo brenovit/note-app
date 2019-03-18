@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.bean.user.UserResponse;
@@ -36,6 +37,26 @@ public class NoteControllerMVC {
 		List<NoteResponse> notes = service.getFromUserId(userKey);
 		model.addAttribute("notes",notes);
         return "index";
-	}	
+	}
+	
+	@GetMapping("/note")
+    public String create() {
+		return "note/create-note";
+	}
+	
+	@PostMapping("/note/edit/{id}")
+    public String edit() {
+		return "note/create-note";
+	}
+	
+	@PostMapping("/note")
+    public String save() {
+		return "redirect:/index";
+	}
+	
+	@GetMapping("/note/delete/{id}")
+    public String delete() {
+		return "redirect:/index";
+	}
 	
 }

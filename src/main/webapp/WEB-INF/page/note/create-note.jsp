@@ -34,10 +34,6 @@
 <link href="${contextPath}/resources/plugins/animate-css/animate.css"
 	rel="stylesheet" />
 
-<!-- Materialize CSS -->
-<link href="${contextPath}/resources/plugins/materialize-css/css/materialize.min.css"
-	rel="stylesheet" />
-	
 <!-- Custom Css -->
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 
@@ -70,11 +66,9 @@
 			</div>
 		</div>
 		<!-- #END# Page Loader -->
-		
 		<!-- Overlay For Sidebars -->
 		<div class="overlay"></div>
 		<!-- #END# Overlay For Sidebars -->
-		
 		<!-- Top Bar -->
 		<nav class="navbar">
 			<div class="container-fluid">
@@ -86,19 +80,21 @@
 				</div>
 				<div class="collapse navbar-collapse" id="navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="${contextPath}/settings">
+						<li class="dropdown"><a href="javascript:void(0);"
+							class="dropdown-toggle" data-toggle="dropdown" role="button">
 								<img
 								src="https://api.adorable.io/avatars/285/${pageContext.request.userPrincipal.name}.png"
-								style="width:20%; border-radius: 50%;" alt="User">
-							</a>
-						</li>
-						<li>
-							<a onclick="document.forms['logoutForm'].submit()">
-									<i class="material-icons">input</i></a>
-						</li>
+								width="48" height="48" alt="User">
+						</a>
+							<ul class="dropdown-menu pull-down">
+								<li><a href="${contextPath}/settings"><i
+										class="material-icons">person</i>Profile</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a onclick="document.forms['logoutForm'].submit()">
+										<i class="material-icons">input</i>Sign Out
+								</a></li>
+							</ul></li>
 					</ul>
-					
 				</div>
 			</div>
 		</nav>
@@ -133,12 +129,6 @@
 						</div>
 					</c:forEach>
 				</div>
-			</div>			
-			
-			<div class="fixed-action-btn">
-			  <a class="btn-floating btn-large orange darken-1" href="${contextPath}/note">
-			    <i class="large material-icons">mode_edit</i>
-			  </a>  
 			</div>
 		</section>
 
@@ -148,10 +138,6 @@
 		<!-- Bootstrap Core Js -->
 		<script
 			src="${contextPath}/resources/plugins/bootstrap/js/bootstrap.js"></script>
-			
-		<!-- Materialize CSS -->
-		<script
-			src="${contextPath}/resources/plugins/materialize-css/js/materialize.js"></script>
 
 		<!-- Select Plugin Js -->
 		<script
