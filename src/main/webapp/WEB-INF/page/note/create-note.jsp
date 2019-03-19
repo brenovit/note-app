@@ -1,5 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Nota Aqui</title>
+<title>Note - Nota Aqui</title>
 <!-- Favicon-->
 <link rel="icon" href="${contextPath}/resources/favicon.ico"
 	type="image/x-icon">
@@ -33,6 +35,9 @@
 <!-- Animation Css -->
 <link href="${contextPath}/resources/plugins/animate-css/animate.css"
 	rel="stylesheet" />
+
+<!-- Bootstrap Material Datetime Picker Css -->
+<link href="${contextPath}/resources/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 
 <!-- Custom Css -->
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
@@ -101,33 +106,74 @@
 
 		<section class="content">
 			<div class="container-fluid">
-				<!-- Basic Example -->
-				<div class="row clearfix">
-					<c:forEach items="${ notes }" var="note">
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-							<div class="card">
-								<div class="header bg-${ note.color }">
-									<h2>
-										${ note.id } - ${ note.title } <small>${ note.alertTime }</small>
-									</h2>
-									<ul class="header-dropdown m-r--5">
-										<li class="dropdown">
-											<a href="javascript:void(0);"
-												class="dropdown-toggle" data-toggle="dropdown" role="button"
-												aria-haspopup="true" aria-expanded="false">
-												<i class="material-icons">more_vert</i>
-											</a>
-											<ul class="dropdown-menu pull-right">
-												<li><a href="javascript:void(0);">Edit</a></li>
-												<li><a href="javascript:void(0);">Delete</a></li>												
-											</ul>
-										</li>
-									</ul>
-								</div>
-								<div class="body">${ note.body }</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="card">
+						<div class="header"></div>
+						<div class="body">
+							<div class="row clearfix">
+								<form:form method="POST" modelAttribute="noteForm"
+									id="create-note">
+									<div class="form-group form-float">
+										<div class="form-line">
+											<input type="text" class="form-control" id="note-tittle"
+												name="Tittle" value="${ note.title }" required />
+											<label class="form-label">Tittle</label>
+										</div>
+									</div>
+									<div class="form-group form-float">
+										<div class="form-line">
+											<input type="text" class="form-control" id="note-body"
+												name="Body" value="${ note.body }"
+												required />
+											<label class="form-label">Body</label>
+										</div>
+									</div>
+									<div class="form-group form-float">
+										<div class="form-line">
+											<input class="form-control" id="note-color"
+												name="Color" value="${ note.color }" required />
+											<label class="form-label">Color</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row clearfix">
+											<select class="form-control show-tick" id="type">
+												<option value="">-- Please select --</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="30">30</option>
+												<option value="40">40</option>
+												<option value="50">50</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row clearfix">
+											<div class="col-sm-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" class="datepicker form-control"
+															placeholder="Please choose a date...">
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<div class="form-group">
+													<div class="form-line">
+														<input type="text" class="timepicker form-control"
+															placeholder="Please choose a time...">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
+									</div>
+								</form:form>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -149,9 +195,16 @@
 
 		<!-- Waves Effect Plugin Js -->
 		<script src="${contextPath}/resources/plugins/node-waves/waves.js"></script>
+		
+		<!-- Moment Plugin Js -->
+    	<script src="${contextPath}/resources/plugins/momentjs/moment.js"></script>
 
+    	<!-- Bootstrap Material Datetime Picker Plugin Js -->
+    	<script src="${contextPath}/resources/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+		
 		<!-- Custom Js -->
 		<script src="${contextPath}/resources/js/admin.js"></script>
+    	<script src="${contextPath}/resources/js/pages/basic-form-elements.js"></script>
 
 		<!-- Demo Js -->
 		<script src="${contextPath}/resources/js/demo.js"></script>

@@ -9,10 +9,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.bean.user.UserResponse;
+import br.com.friends.noteapp.persistence.note.Note;
+import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.service.NoteService;
 
 @Controller
@@ -40,7 +43,12 @@ public class NoteControllerMVC {
 	}
 	
 	@GetMapping("/note")
-    public String create() {
+    public String create(@ModelAttribute("noteForm") Note noteForm, Model model, HttpSession session) {
+		Object attribute = session.getAttribute("userKey");
+		Long userKey = (Long) attribute;
+		Note note = new Note();
+		model.addAttribute("note", note);
+		
 		return "note/create-note";
 	}
 	
@@ -50,7 +58,13 @@ public class NoteControllerMVC {
 	}
 	
 	@PostMapping("/note")
-    public String save() {
+    public String save(@ModelAttribute("noteForm") Note noteForm, Model model, HttpSession session) {
+		Object attribute = session.getAttribute("userKey");
+		Long userKey = (Long) attribute;
+		noteForm.setUser(new User().id(userKey));
+		Note note = new Note();
+		model.addAttribute("note", note);
+		
 		return "redirect:/index";
 	}
 	
