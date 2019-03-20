@@ -53,62 +53,67 @@
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 		</form>
-
-		<!-- Page Loader -->
-		<div class="page-loader-wrapper">
-			<div class="loader">
-				<div class="preloader">
-					<div class="spinner-layer pl-red">
-						<div class="circle-clipper left">
-							<div class="circle"></div>
-						</div>
-						<div class="circle-clipper right">
-							<div class="circle"></div>
-						</div>
+	</c:if>
+	
+	<!-- Page Loader -->
+	<div class="page-loader-wrapper">
+		<div class="loader">
+			<div class="preloader">
+				<div class="spinner-layer pl-red">
+					<div class="circle-clipper left">
+						<div class="circle"></div>
+					</div>
+					<div class="circle-clipper right">
+						<div class="circle"></div>
 					</div>
 				</div>
-				<p>Please wait...</p>
 			</div>
+			<p>Please wait...</p>
 		</div>
-		<!-- #END# Page Loader -->
-		<!-- Overlay For Sidebars -->
-		<div class="overlay"></div>
-		<!-- #END# Overlay For Sidebars -->
-		<!-- Top Bar -->
-		<nav class="navbar">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="index"> <img
-						src="${contextPath}/resources/logo-via-logohub.png"
+	</div>
+	<!-- #END# Page Loader -->
+	
+	<!-- Overlay For Sidebars -->
+	<div class="overlay"></div>
+	<!-- #END# Overlay For Sidebars -->
+	
+	<!-- Top Bar -->
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index">
+					<img src="${contextPath}/resources/logo-via-logohub.png"
 						alt="Nota Aqui" width="25%" />
-					</a>
-				</div>
-				<div class="collapse navbar-collapse" id="navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a href="javascript:void(0);"
-							class="dropdown-toggle" data-toggle="dropdown" role="button">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<div class="m-t-5 align-right">
+							<a href="${contextPath}/settings">
 								<img
 								src="https://api.adorable.io/avatars/285/${pageContext.request.userPrincipal.name}.png"
-								width="48" height="48" alt="User">
-						</a>
-							<ul class="dropdown-menu pull-down">
-								<li><a href="${contextPath}/settings"><i
-										class="material-icons">person</i>Profile</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a onclick="document.forms['logoutForm'].submit()">
-										<i class="material-icons">input</i>Sign Out
-								</a></li>
-							</ul></li>
-					</ul>
-				</div>
+								style="width:20%; border-radius: 20%;" alt="User">
+							</a>
+						</div>
+					</li>
+					<li>
+						<a onclick="document.forms['logoutForm'].submit()">
+								<i class="material-icons">input</i></a>
+					</li>
+				</ul>					
 			</div>
-		</nav>
+		</div>
+	</nav>
 
-		<section class="content">
-			<div class="container-fluid">
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row clearfix">		
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="card">
-						<div class="header"></div>
+						<div class="header">
+							<h2>Create Note</h2>
+						</div>
 						<div class="body">
 							<div class="row clearfix">
 								<form:form method="POST" modelAttribute="noteForm"
@@ -176,38 +181,38 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- Jquery Core Js -->
-		<script src="${contextPath}/resources/plugins/jquery/jquery.min.js"></script>
+	<!-- Jquery Core Js -->
+	<script src="${contextPath}/resources/plugins/jquery/jquery.min.js"></script>
 
-		<!-- Bootstrap Core Js -->
-		<script
-			src="${contextPath}/resources/plugins/bootstrap/js/bootstrap.js"></script>
+	<!-- Bootstrap Core Js -->
+	<script
+		src="${contextPath}/resources/plugins/bootstrap/js/bootstrap.js"></script>
 
-		<!-- Select Plugin Js -->
-		<script
-			src="${contextPath}/resources/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+	<!-- Select Plugin Js -->
+	<script
+		src="${contextPath}/resources/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
-		<!-- Slimscroll Plugin Js -->
-		<script
-			src="${contextPath}/resources/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<!-- Slimscroll Plugin Js -->
+	<script
+		src="${contextPath}/resources/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
-		<!-- Waves Effect Plugin Js -->
-		<script src="${contextPath}/resources/plugins/node-waves/waves.js"></script>
-		
-		<!-- Moment Plugin Js -->
-    	<script src="${contextPath}/resources/plugins/momentjs/moment.js"></script>
+	<!-- Waves Effect Plugin Js -->
+	<script src="${contextPath}/resources/plugins/node-waves/waves.js"></script>
+	
+	<!-- Moment Plugin Js -->
+   	<script src="${contextPath}/resources/plugins/momentjs/moment.js"></script>
 
-    	<!-- Bootstrap Material Datetime Picker Plugin Js -->
-    	<script src="${contextPath}/resources/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-		
-		<!-- Custom Js -->
-		<script src="${contextPath}/resources/js/admin.js"></script>
-    	<script src="${contextPath}/resources/js/pages/basic-form-elements.js"></script>
+   	<!-- Bootstrap Material Datetime Picker Plugin Js -->
+   	<script src="${contextPath}/resources/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+	
+	<!-- Custom Js -->
+	<script src="${contextPath}/resources/js/admin.js"></script>
+   	<script src="${contextPath}/resources/js/pages/basic-form-elements.js"></script>
 
-		<!-- Demo Js -->
-		<script src="${contextPath}/resources/js/demo.js"></script>
-	</c:if>
+	<!-- Demo Js -->
+	<script src="${contextPath}/resources/js/demo.js"></script>
 </body>
 </html>
