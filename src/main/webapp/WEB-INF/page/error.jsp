@@ -40,7 +40,7 @@
         <div class="error-code">500</div>
         <div class="error-message">${ error }</div>        
         <div class="button-place">
-            <a href="" class="btn btn-default btn-lg waves-effect">GO TO HOMEPAGE</a>
+            <a href="${contextPath}" class="btn btn-default btn-lg waves-effect">GO TO HOMEPAGE</a>
         </div>
     </div>
 

@@ -1,7 +1,5 @@
 package br.com.friends.noteapp.service;
 
-import java.text.ParseException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -9,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.validator.UserValidator;
-import lombok.SneakyThrows;
 
 @Service
 public class AccessService extends FacadeService{
@@ -19,7 +16,6 @@ public class AccessService extends FacadeService{
     @Autowired
     private UserValidator userValidator;
 
-	@SneakyThrows(ParseException.class)
 	public User save(User entity) {
 		User user = getUser().save(entity);
 		

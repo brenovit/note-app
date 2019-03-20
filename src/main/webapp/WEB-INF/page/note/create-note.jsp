@@ -39,6 +39,9 @@
 <!-- Bootstrap Material Datetime Picker Css -->
 <link href="${contextPath}/resources/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 
+<!-- Bootstrap Select Css -->
+<link href="${contextPath}/resources/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
 <!-- Custom Css -->
 <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
 
@@ -81,7 +84,7 @@
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index">
+				<a class="navbar-brand" href="${contextPath}/">
 					<img src="${contextPath}/resources/logo-via-logohub.png"
 						alt="Nota Aqui" width="25%" />
 				</a>
@@ -116,64 +119,67 @@
 						</div>
 						<div class="body">
 							<div class="row clearfix">
-								<form:form method="POST" modelAttribute="noteForm"
-									id="create-note">
-									<div class="form-group form-float">
-										<div class="form-line">
-											<input type="text" class="form-control" id="note-tittle"
-												name="Tittle" value="${ note.title }" required />
-											<label class="form-label">Tittle</label>
-										</div>
-									</div>
-									<div class="form-group form-float">
-										<div class="form-line">
-											<input type="text" class="form-control" id="note-body"
-												name="Body" value="${ note.body }"
-												required />
-											<label class="form-label">Body</label>
-										</div>
-									</div>
-									<div class="form-group form-float">
-										<div class="form-line">
-											<input class="form-control" id="note-color"
-												name="Color" value="${ note.color }" required />
-											<label class="form-label">Color</label>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="row clearfix">
-											<select class="form-control show-tick" id="type">
-												<option value="">-- Please select --</option>
-												<option value="10">10</option>
-												<option value="20">20</option>
-												<option value="30">30</option>
-												<option value="40">40</option>
-												<option value="50">50</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="row clearfix">
-											<div class="col-sm-4">
-												<div class="form-group">
-													<div class="form-line">
-														<input type="text" class="datepicker form-control"
-															placeholder="Please choose a date...">
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-4">
-												<div class="form-group">
-													<div class="form-line">
-														<input type="text" class="timepicker form-control"
-															placeholder="Please choose a time...">
-													</div>
+								<form:form method="POST" modelAttribute="noteForm" id="create-note">
+									<spring:bind path="title">
+										<div class="col-sm-12">                                    
+											<div class="form-group form-float">
+												<div class="form-line">
+													<form:input path="title" required="true" name="title" type="text" 
+													class="form-control" id="note-tittle" value="${ note.title }" />
+													<label class="form-label">Tittle</label>													
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="form-group">
-										<button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
+									</spring:bind>
+									<spring:bind path="body">
+										<div class="col-sm-12">
+											<div class="form-group form-float">
+												<div class="form-line">												
+													<form:input path="body" required="true" name="body" type="text" 
+													class="form-control" id="note-body" value="${ note.body }" />
+													<label class="form-label">Body</label>
+												</div>
+											</div>
+										</div>
+									</spring:bind>
+									<spring:bind path="color">
+										<div class="col-sm-12">
+											<div class="form-group form-float">
+												<div class="form-line">
+													<form:input path="color" required="true" name="color" 
+													class="form-control" id="note-color" value="${ note.color }" />
+													<label class="form-label">Color</label>
+												</div>
+											</div>
+										</div>
+									</spring:bind>
+									<spring:bind path="type">
+	                                	<div class="col-sm-12">
+											<div class="form-group">
+												<form:select class="form-control show-tick" path="type">
+													<form:option value="" label="-- Please select the type--" />
+													<c:forEach items="${ noteTypes }" var="nt">
+														<form:option value="${ nt.value }" label="${ nt.name }" />
+													</c:forEach>
+												</form:select>
+											</div>
+										</div>
+									</spring:bind>
+									<spring:bind path="time">
+										<div class="col-sm-12">
+											<div class="form-group">
+												<div class="form-line">
+													<form:input path="time" required="true" name="time" type="text" 
+													class="datetimepicker form-control" value="${ note.alertTime }" placeholder="Please choose a date..." />
+												</div>
+											</div>
+										</div>
+									</spring:bind>
+									
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">									
+										<div class="form-group">
+											<button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
+										</div>
 									</div>
 								</form:form>
 							</div>

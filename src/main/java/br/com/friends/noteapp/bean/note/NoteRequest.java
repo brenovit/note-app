@@ -11,6 +11,7 @@ import lombok.Getter;
 
 @Data
 public class NoteRequest {
+	private Long id;
 	private String title;
 	private String body;
 	private Long userId;

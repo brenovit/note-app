@@ -76,7 +76,7 @@
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index">
+				<a class="navbar-brand" href="${contextPath}/">
 					<img src="${contextPath}/resources/logo-via-logohub.png"
 						alt="Nota Aqui" width="25%" />
 				</a>
@@ -100,6 +100,15 @@
 			</div>
 		</div>
 	</nav>
+	
+	<c:if test="${ not empty message }">
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        		<span aria-hidden="true">&times;</span>
+        	</button>
+			${ mensagem }
+		</div>
+	</c:if>
 
 	<section class="content">
 		<div class="container-fluid">
@@ -109,7 +118,7 @@
 						<div class="card">
 							<div class="header bg-${ note.color }">
 								<h2>
-									${ note.id } - ${ note.title } <small>${ note.alertTime }</small>
+									${ note.title } <small>${ note.alertTime }</small>
 								</h2>
 								<ul class="header-dropdown m-r--5">
 									<li class="dropdown">
@@ -119,8 +128,8 @@
 											<i class="material-icons">more_vert</i>
 										</a>
 										<ul class="dropdown-menu pull-right">
-											<li><a href="javascript:void(0);">Edit</a></li>
-											<li><a href="javascript:void(0);">Delete</a></li>												
+											<li><a href="${contextPath}/note/edit/${note.id}">Edit</a></li>
+											<li><a href="${contextPath}/note/delete/${note.id}">Delete</a></li>												
 										</ul>
 									</li>
 								</ul>
@@ -129,14 +138,14 @@
 						</div>
 					</div>
 				</c:forEach>
-				
-				
-				<div class="float bg-orange">
+	
+				<div>
 					<a class="btn-floating btn-large" href="${contextPath}/note">
-						<i class="large material-icons">edit</i>
+						<div class="float bg-orange">
+							<i class="large material-icons">edit</i>
+						</div>
 					</a>  
-				</div>
-				
+				</div>				
 			</div>
 		</div>
 	</section>

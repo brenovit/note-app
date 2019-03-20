@@ -19,5 +19,5 @@ public class NoteResponse {
 	private String locationParty;
 	private String sended;
 	private String alertTime;
-
+	
 }

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
-import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.parser.NoteParser;
 import br.com.friends.noteapp.persistence.note.Note;
 import br.com.friends.noteapp.persistence.note.NoteRepository;
+import lombok.SneakyThrows;
 
 @Service
 public class NoteService extends FacadeService{
@@ -31,7 +31,8 @@ public class NoteService extends FacadeService{
 		return NoteParser.parse(notes);
 	}
 	
-	public NoteResponse create(NoteRequest request) throws ParseException {
+	@SneakyThrows
+	public NoteResponse create(NoteRequest request) {
 		Note entity = NoteParser.parser(request);
 		entity = noteRepository.save(entity);
 		return NoteParser.parse(entity);
@@ -40,8 +41,9 @@ public class NoteService extends FacadeService{
 	public void delete(long id) {
 		noteRepository.deleteById(id);
 	}
-
-	public NoteResponse update(NoteRequest request) throws ParseException {
+	
+	@SneakyThrows
+	public NoteResponse update(NoteRequest request) {
 		Note entity = NoteParser.parser(request);
 		entity = update(entity);
 		return NoteParser.parse(entity);
@@ -63,11 +65,5 @@ public class NoteService extends FacadeService{
 	public List<NoteResponse> getFromUserUsername(String username) {
 		List<Note> notes = noteRepository.findByUserUsername(username);
 		return NoteParser.parse(notes);
-	}
-
-	public UserResponse getUserFromUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+	}	
 }

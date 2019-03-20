@@ -77,7 +77,7 @@
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="index">
+				<a class="navbar-brand" href="${contextPath}/">
 					<img src="${contextPath}/resources/logo-via-logohub.png"
 						alt="Nota Aqui" width="25%" />
 				</a>

@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.joda.time.DateTime;
+
 import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
@@ -26,7 +28,7 @@ public class NoteParser {
 		response.setType(entity.getType());
 		response.setUserId(entity.getUser().getId());
 		response.setSended(String.valueOf(entity.isSended()));
-		response.setAlertTime(entity.getAlertTime().toString());
+		response.setAlertTime(new DateTime(entity.getAlertTime()).toString("dd/MM/yyyy HH:mm"));
 		return response;
 	}
 	
