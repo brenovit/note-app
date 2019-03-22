@@ -1,11 +1,11 @@
-package br.com.friends.noteapp.bean.note;
+package br.com.friends.noteapp.bean.modelview;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class NoteTypeMVC {
-	private int value;
+public class NoteTypeView {
+	private Integer value;
 	private String name;
 }

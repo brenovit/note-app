@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.com.friends.noteapp.bean.dto.NoteType;
+import br.com.friends.noteapp.bean.modelview.NoteColorView;
+import br.com.friends.noteapp.bean.modelview.NoteTypeView;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
-import br.com.friends.noteapp.bean.note.NoteTypeMVC;
 import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.service.NoteService;
 
@@ -47,8 +48,8 @@ public class NoteControllerMVC {
 	
 	@GetMapping("/note")
     public String create(@ModelAttribute("noteForm") NoteRequest noteForm, Model model) {
-		List<NoteTypeMVC> noteTypes = getNoteTypes();		
-		model.addAttribute("noteTypes", noteTypes);		
+		model.addAttribute("noteTypes", getNoteTypes());		
+		model.addAttribute("colors", getNoteColors());
 		return "note/create-note";
 	}
 	
@@ -62,12 +63,12 @@ public class NoteControllerMVC {
 		}
 		
 		noteForm.setUserId(userKey);
-		service.create(noteForm);
+		service.save(noteForm);
 		return "redirect:/index";
 	}
 	
-	private List<NoteTypeMVC> getNoteTypes(){
-		List<NoteTypeMVC> noteTypes = new ArrayList<NoteTypeMVC>();
+	private List<NoteTypeView> getNoteTypes(){
+		List<NoteTypeView> noteTypes = new ArrayList<NoteTypeView>();
 		noteTypes.add(extractType(NoteType.BASIC));
 		noteTypes.add(extractType(NoteType.BIRTHDAY));
 		noteTypes.add(extractType(NoteType.RECIPE));
@@ -76,22 +77,44 @@ public class NoteControllerMVC {
 		return noteTypes;
 	}
 	
-	private NoteTypeMVC extractType(NoteType noteType) {
-		return new NoteTypeMVC(noteType.ordinal(), noteType.name());
+	private List<NoteColorView> getNoteColors(){
+		List<NoteColorView> noteTypes = new ArrayList<NoteColorView>();
+		noteTypes.add(new NoteColorView("white"));
+		noteTypes.add(new NoteColorView("red"));
+		noteTypes.add(new NoteColorView("pink"));
+		noteTypes.add(new NoteColorView("purple"));
+		noteTypes.add(new NoteColorView("indigo"));
+		noteTypes.add(new NoteColorView("blue"));
+		noteTypes.add(new NoteColorView("cyan"));
+		noteTypes.add(new NoteColorView("teal"));
+		noteTypes.add(new NoteColorView("green"));
+		noteTypes.add(new NoteColorView("lime"));
+		noteTypes.add(new NoteColorView("yellow"));
+		noteTypes.add(new NoteColorView("amber"));
+		noteTypes.add(new NoteColorView("orange"));
+		noteTypes.add(new NoteColorView("brown"));
+		noteTypes.add(new NoteColorView("grey"));
+		noteTypes.add(new NoteColorView("black"));
+		return noteTypes;
+	}
+	
+	private NoteTypeView extractType(NoteType noteType) {
+		return new NoteTypeView(noteType.ordinal(), noteType.name());
 	}
 	
 	@GetMapping("/note/edit/{noteId}")
     public String edit(@PathVariable Long noteId, @ModelAttribute("noteForm") NoteRequest noteForm, Model model, HttpSession session) {
-		Long userKey = (Long) session.getAttribute("userKey");
+		//Long userKey = (Long) session.getAttribute("userKey");
 		session.setAttribute("noteId", noteId);
 		NoteResponse note = service.get(noteId);
 		model.addAttribute("note", note);
+		
 		return "forward:/note";
 	}
 	
 	@GetMapping("/note/delete/{noteId}")
     public String delete(@PathVariable Long noteId,  Model model, HttpSession session) {
-		Long userKey = (Long) session.getAttribute("userKey");
+		//Long userKey = (Long) session.getAttribute("userKey");
 		service.delete(noteId);
 		model.addAttribute("message", "Note "+noteId+" deleted");
 		return "forward:/index";

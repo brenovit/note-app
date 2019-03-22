@@ -31,19 +31,12 @@ public class NoteService extends FacadeService{
 		return NoteParser.parse(notes);
 	}
 	
-	@SneakyThrows
-	public NoteResponse create(NoteRequest request) {
-		Note entity = NoteParser.parser(request);
-		entity = noteRepository.save(entity);
-		return NoteParser.parse(entity);
-	}
-
 	public void delete(long id) {
 		noteRepository.deleteById(id);
 	}
 	
 	@SneakyThrows
-	public NoteResponse update(NoteRequest request) {
+	public NoteResponse save(NoteRequest request) {
 		Note entity = NoteParser.parser(request);
 		entity = update(entity);
 		return NoteParser.parse(entity);

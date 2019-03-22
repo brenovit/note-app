@@ -119,7 +119,7 @@
 						</div>
 						<div class="body">
 							<div class="row clearfix">
-								<form:form method="POST" modelAttribute="noteForm" id="create-note">
+								<form:form method="POST" modelAttribute="noteForm" id="create-note" action="${contextPath}/note">
 									<spring:bind path="title">
 										<div class="col-sm-12">                                    
 											<div class="form-group form-float">
@@ -135,31 +135,48 @@
 										<div class="col-sm-12">
 											<div class="form-group form-float">
 												<div class="form-line">												
-													<form:input path="body" required="true" name="body" type="text" 
-													class="form-control" id="note-body" value="${ note.body }" />
+													<form:textarea path="body" required="true" name="body" rows="1" maxlength="255"
+													class="form-control no-resize auto-growth" id="note-body" value="${ note.body }" onkeyup="countChar(this)"/>
 													<label class="form-label">Body</label>
 												</div>
+												<label id="note-body-label"></label>
 											</div>
 										</div>
 									</spring:bind>
 									<spring:bind path="color">
 										<div class="col-sm-12">
-											<div class="form-group form-float">
-												<div class="form-line">
-													<form:input path="color" required="true" name="color" 
-													class="form-control" id="note-color" value="${ note.color }" />
-													<label class="form-label">Color</label>
-												</div>
+											<div class="form-group">
+												<label for="select_color">Color</label>
+												<form:select class="form-control show-tick" path="color" id="select_color">													
+													<c:forEach items="${ colors }" var="cl">
+														<c:choose>
+		            										<c:when test="${cl.value eq note.color}">
+		            											<form:option value="${ cl.value }" label="${ cl.name }" class="bg-${ cl.value }" selected="true"/>
+		            										</c:when>
+		            										<c:otherwise>
+		            											<form:option value="${ cl.value }" label="${ cl.name }" class="bg-${ cl.value }" />		            											
+	    	        										</c:otherwise>
+	            										</c:choose>
+													</c:forEach>
+												</form:select>
 											</div>
 										</div>
 									</spring:bind>
 									<spring:bind path="type">
 	                                	<div class="col-sm-12">
 											<div class="form-group">
-												<form:select class="form-control show-tick" path="type">
+												<form:select class="form-control show-tick" path="type">												 	
 													<form:option value="" label="-- Please select the type--" />
 													<c:forEach items="${ noteTypes }" var="nt">
-														<form:option value="${ nt.value }" label="${ nt.name }" />
+														<c:choose>
+		            										<c:when test="${nt.value eq note.type}">
+		            											<form:option value="${ nt.value }" label="${ nt.name }" selected="true"/>
+		            										</c:when>
+		            										<c:otherwise>
+		            											<form:option value="${ nt.value }" label="${ nt.name }" />		            											
+	    	        										</c:otherwise>
+	            										</c:choose>
+														
 													</c:forEach>
 												</form:select>
 											</div>
@@ -213,6 +230,9 @@
 
    	<!-- Bootstrap Material Datetime Picker Plugin Js -->
    	<script src="${contextPath}/resources/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+	
+	<!-- Autosize Plugin Js -->
+    <script src="${contextPath}/resources/plugins/autosize/autosize.js"></script>
 	
 	<!-- Custom Js -->
 	<script src="${contextPath}/resources/js/admin.js"></script>

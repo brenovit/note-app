@@ -25,7 +25,7 @@ public class NoteParser {
 		response.setLocationParty(entity.getLocationParty());
 		response.setPersonName(entity.getPersonName());
 		response.setTitle(entity.getTitle());
-		response.setType(entity.getType());
+		response.setType(entity.getType().ordinal());
 		response.setUserId(entity.getUser().getId());
 		response.setSended(String.valueOf(entity.isSended()));
 		response.setAlertTime(new DateTime(entity.getAlertTime()).toString("dd/MM/yyyy HH:mm"));
@@ -34,6 +34,9 @@ public class NoteParser {
 	
 	public static Note parser(NoteRequest request) throws ParseException {
 		Note entity = new Note();
+		if(request.getId() != null && request.getId() > 0) {
+			entity.setId(request.getId());
+		}
 		entity.setBody(request.getBody());
 		entity.setColor(request.getColor());
 		entity.setGift(request.getGift());

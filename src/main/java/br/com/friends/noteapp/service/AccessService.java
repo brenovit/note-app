@@ -26,7 +26,7 @@ public class AccessService extends FacadeService{
 		request.setType(0);
 		request.setColor("red");
 		request.setUserId(user.getId());
-		getNote().create(request);
+		getNote().save(request);
 		
 		request.setTitle("Trabalho - Session");
 		request.setBody("Implementar o uso de Sessão na aplicação (HTTPSession");
@@ -34,7 +34,7 @@ public class AccessService extends FacadeService{
 		request.setType(0);
 		request.setColor("blue");
 		request.setUserId(user.getId());
-		getNote().create(request);
+		getNote().save(request);
 		
 		return user;
 	}

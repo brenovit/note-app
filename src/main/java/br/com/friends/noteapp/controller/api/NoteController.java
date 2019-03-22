@@ -28,7 +28,7 @@ public class NoteController {
 	
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody NoteRequest request) throws ParseException{
-		NoteResponse response = noteService.create(request);
+		NoteResponse response = noteService.save(request);
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
 	
@@ -51,7 +51,7 @@ public class NoteController {
 	
 	@PutMapping
 	public ResponseEntity<?> update(@RequestBody NoteRequest request) throws ParseException{
-		NoteResponse response = noteService.update(request);
+		NoteResponse response = noteService.save(request);
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
 	

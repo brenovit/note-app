@@ -142,7 +142,7 @@
 				<div>
 					<a class="btn-floating btn-large" href="${contextPath}/note">
 						<div class="float bg-orange">
-							<i class="large material-icons">edit</i>
+							<i class="material-icons m-t-5 font-50">add</i>
 						</div>
 					</a>  
 				</div>				
