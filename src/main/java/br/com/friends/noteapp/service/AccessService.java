@@ -1,9 +1,11 @@
 package br.com.friends.noteapp.service;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.validator.UserValidator;
@@ -20,19 +22,15 @@ public class AccessService extends FacadeService{
 		User user = getUser().save(entity);
 		
 		NoteRequest request = new NoteRequest();
-		request.setTitle("Trabalho - Design Patter");
-		request.setBody("Implementar no projeto os Design Patterns solicitados");
-		request.setTime("18/03/2019 09:00");
-		request.setType(0);
-		request.setColor("red");
-		request.setUserId(user.getId());
-		getNote().save(request);
-		
-		request.setTitle("Trabalho - Session");
-		request.setBody("Implementar o uso de Sessão na aplicação (HTTPSession");
-		request.setTime("20/03/2019 09:00");
-		request.setType(0);
-		request.setColor("blue");
+		request.setTitle("Primeira Nota");
+		request.setBody("Bem-Vindo ao NotaAqui"
+				+ "\n1. Clique nos 3 pontinhos acima da nota para Editar ou Deletar a nota."
+				+ "\n2. Clique no botão de \"+\" para Criar uma nova nota."
+				+ "\n3. Sempre que criar uma nota, no horario marcado, será enviado um email de lembrete"
+				+ "\n4. Vamos anotar");
+		request.setTime(new DateTime().toString("dd/MM/yyyy HH:mm"));
+		request.setType(NoteType.REMINDER);
+		request.setColor("yellow");
 		request.setUserId(user.getId());
 		getNote().save(request);
 		

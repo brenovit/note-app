@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.friends.noteapp.bean.dto.NoteType;
 import lombok.Data;
 import lombok.Getter;
 
@@ -43,5 +44,9 @@ public class NoteRequest {
 	public Date getAlertTime() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		return sdf.parse(time);
+	}
+
+	public void setType(NoteType noteType) {
+		this.type = noteType.ordinal();		
 	}
 }
