@@ -29,7 +29,7 @@ public class AccessService extends FacadeService{
 				+ "\n3. Sempre que criar uma nota, no horario marcado, será enviado um email de lembrete"
 				+ "\n4. Vamos anotar");
 		request.setTime(new DateTime().toString("dd/MM/yyyy HH:mm"));
-		request.setType(NoteType.REMINDER);
+		request.setType(NoteType.BASIC);
 		request.setColor("yellow");
 		request.setUserId(user.getId());
 		getNote().save(request);

@@ -165,7 +165,7 @@
 									<spring:bind path="type">
 	                                	<div class="col-sm-12">
 											<div class="form-group">
-												<form:select class="form-control show-tick" path="type">												 	
+												<form:select class="form-control show-tick" path="type" id="noteTypeSelect" disabled="${note.type != null ? true : false}">												 	
 													<form:option value="" label="-- Please select the type--" />
 													<c:forEach items="${ noteTypes }" var="nt">
 														<c:choose>
@@ -182,17 +182,51 @@
 											</div>
 										</div>
 									</spring:bind>
-									<spring:bind path="time">
-										<div class="col-sm-12">
-											<div class="form-group">
+									<div id="noteType_1" class="noteType hide">
+										<div class="col-sm-12">                                    
+											<div class="form-group form-float">
 												<div class="form-line">
-													<form:input path="time" required="true" name="time" type="text" 
-													class="datetimepicker form-control" value="${ note.alertTime }" placeholder="Please choose a date..." />
+													<form:input path="personName" required="false" name="personName" type="text" 
+													class="form-control" id="note-tittle" value="${ note.personName }" />
+													<label class="form-label">Person Name</label>													
 												</div>
 											</div>
 										</div>
-									</spring:bind>
-									
+									</div>
+									<div id="noteType_2" class="noteType hide">
+										<div class="col-sm-12">                                    
+												<div class="form-group form-float">
+													<div class="form-line">
+														<form:input path="personName" required="false" name="personName" type="text" 
+														class="form-control" id="note-tittle" value="${ note.personName }" />
+														<label class="form-label">Recipe Name</label>													
+													</div>
+												</div>
+											</div>
+										</div>
+									<div id="noteType_3" class="noteType hide">
+										<spring:bind path="time">
+											<div class="col-sm-12">
+												<div class="form-group">
+													<div class="form-line">
+														<form:input path="time" required="false" name="time" type="text" 
+														class="datetimepicker form-control" value="${ note.alertTime }" placeholder="Please choose a date..." />
+													</div>
+												</div>
+											</div>
+										</spring:bind>
+									</div>
+									<div id="noteType_4" class="noteType hide">
+									<div class="col-sm-12">                                    
+											<div class="form-group form-float">
+												<div class="form-line">
+													<form:input path="personName" required="false" name="personName" type="text" 
+													class="form-control" id="note-tittle" value="${ note.personName }" />
+													<label class="form-label">Tasks Name</label>													
+												</div>
+											</div>
+										</div>
+									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">									
 										<div class="form-group">
 											<button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
