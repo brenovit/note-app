@@ -61,7 +61,7 @@ public class Note {
 	
 	private String personName;	
 	private String gift;
-	private String locationParty;
+	private String partyLocation;
 	
 	private Date alertTime;
 	

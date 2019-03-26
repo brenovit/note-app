@@ -20,7 +20,7 @@ public class NoteRequest {
 	private String color;
 	private String personName;	
 	private String gift;
-	private String locationParty;
+	private String partyLocation;
 	
 	@Getter
 	private String time;

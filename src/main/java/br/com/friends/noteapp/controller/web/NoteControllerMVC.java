@@ -54,7 +54,7 @@ public class NoteControllerMVC {
 	}
 	
 	@PostMapping("/note")
-    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, HttpSession session) {
+    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, Model model, HttpSession session) {
 		Long userKey = (Long) session.getAttribute("userKey");
 		Object attribute = session.getAttribute("noteId");		
 		if(attribute != null) {			
@@ -63,6 +63,11 @@ public class NoteControllerMVC {
 		}
 		
 		noteForm.setUserId(userKey);
+		
+		String message = service.validate(noteForm);
+		if(message != null) {
+			model.addAttribute("message", message);
+		}
 		service.save(noteForm);
 		return "redirect:/index";
 	}

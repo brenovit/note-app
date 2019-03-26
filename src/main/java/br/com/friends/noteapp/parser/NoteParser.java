@@ -22,7 +22,7 @@ public class NoteParser {
 		response.setColor(entity.getColor());
 		response.setGift(entity.getGift());
 		response.setLastModificatedDate(entity.getLastModificatedDate());
-		response.setLocationParty(entity.getLocationParty());
+		response.setPartyLocation(entity.getPartyLocation());
 		response.setPersonName(entity.getPersonName());
 		response.setTitle(entity.getTitle());
 		response.setType(entity.getType().ordinal());
@@ -42,11 +42,12 @@ public class NoteParser {
 		entity.setGift(request.getGift());
 		entity.setAlertTime(request.getAlertTime());
 		entity.setLastModificatedDate(new Date());
-		entity.setLocationParty(request.getLocationParty());
+		entity.setPartyLocation(request.getPartyLocation());
 		entity.setPersonName(request.getPersonName());
 		entity.setTitle(request.getTitle());				
 		entity.setType(getType(request.getType()));
 		entity.setUser(new User().id(request.getUserId()));
+		
 		return entity;
 	}
 

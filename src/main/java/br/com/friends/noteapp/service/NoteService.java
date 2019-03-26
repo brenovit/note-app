@@ -7,11 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.parser.NoteParser;
 import br.com.friends.noteapp.persistence.note.Note;
 import br.com.friends.noteapp.persistence.note.NoteRepository;
+import br.com.friends.noteapp.validator.note.factory.NoteFactoryValidator;
+import br.com.friends.noteapp.validator.note.factory.NoteValidator;
 import lombok.SneakyThrows;
 
 @Service
@@ -58,5 +61,14 @@ public class NoteService extends FacadeService{
 	public List<NoteResponse> getFromUserUsername(String username) {
 		List<Note> notes = noteRepository.findByUserUsername(username);
 		return NoteParser.parse(notes);
+	}
+
+	public String validate(NoteRequest noteForm) {
+		String message = null;
+		NoteValidator validator = NoteFactoryValidator.getValidator(noteForm.getType());		
+		if(validator != null) {
+			message = validator.validate(noteForm);
+		}		
+		return message;
 	}	
 }

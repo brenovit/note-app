@@ -108,6 +108,15 @@
 			</div>
 		</div>
 	</nav>
+	
+	<c:if test="${ not empty message }">
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        		<span aria-hidden="true">&times;</span>
+        	</button>
+			${ mensagem }
+		</div>
+	</c:if>
 
 	<section class="content">
 		<div class="container-fluid">
