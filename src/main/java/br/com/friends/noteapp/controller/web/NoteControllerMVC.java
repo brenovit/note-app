@@ -65,9 +65,11 @@ public class NoteControllerMVC {
 		noteForm.setUserId(userKey);
 		
 		String message = service.validate(noteForm);
-		if(message != null) {
+		if(message != null && !message.isEmpty()) {
 			model.addAttribute("message", message);
+			return "redirect:/note"; 
 		}
+		
 		service.save(noteForm);
 		return "redirect:/index";
 	}

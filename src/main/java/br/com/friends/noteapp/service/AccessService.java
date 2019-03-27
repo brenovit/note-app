@@ -8,15 +8,16 @@ import org.springframework.validation.BindingResult;
 import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.persistence.user.User;
-import br.com.friends.noteapp.validator.UserValidator;
+import br.com.friends.noteapp.validator.AbstractFactoryValidator;
+import br.com.friends.noteapp.validator.FactoryValidatorProducer;
+import br.com.friends.noteapp.validator.user.factory.UserValidator;
 
 @Service
 public class AccessService extends FacadeService{
 	
 	@Autowired
     private SecurityService security;
-    @Autowired
-    private UserValidator userValidator;
+   
 
 	public User save(User entity) {
 		User user = getUser().save(entity);
@@ -41,9 +42,16 @@ public class AccessService extends FacadeService{
 		security.autoLogin(username, password);
 	}
 
-	public boolean registration(User userForm, BindingResult bindingResult) {
-    	userValidator.validate(userForm, bindingResult);
-
+	public boolean registration(User userForm, BindingResult bindingResult) {   	
+    	
+    	AbstractFactoryValidator abstractValidator = FactoryValidatorProducer.getFactory("USER");
+		
+		UserValidator validator = abstractValidator.getUserValidator(1);
+		
+		if(validator != null) {
+			validator.validate(userForm, bindingResult);
+		}
+		
 		if (bindingResult.hasErrors()) {
     		return false;
     	}

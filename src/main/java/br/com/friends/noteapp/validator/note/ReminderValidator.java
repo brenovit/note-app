@@ -9,9 +9,9 @@ public class ReminderValidator implements NoteValidator{
 	public String validate(NoteRequest note) {
 		String message = "";
 		
-		if(note.getPersonName() == null || 
-				(note.getPersonName() != null && note.getPersonName().isEmpty()))  {
-			message = "The person name cannot be empty";
+		if(note.getTime() == null || 
+				(note.getTime() != null && note.getTime().isEmpty()))  {
+			message = "The time alert cannot be empty";
 		}
 		
 		return message;
