@@ -38,7 +38,7 @@ public class NoteControllerMVC {
 		Long userKey = 0L;
 		if(attribute == null) {
 			String username = authentication.getName();
-			UserResponse user = service.getUser().getByUsername(username);
+			UserResponse user = service.getUserByUsername(username);
 			session.setAttribute("userKey", user.getId());
 			userKey = user.getId();
 		} else {

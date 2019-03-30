@@ -6,5 +6,5 @@ import br.com.friends.noteapp.persistence.user.User;
 
 public interface UserValidator {
 	
-	public void validate(User user, Errors errors);
+	public String validate(User user, Errors errors);
 }

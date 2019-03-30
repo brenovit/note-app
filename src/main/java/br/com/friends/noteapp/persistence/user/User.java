@@ -39,6 +39,7 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 	
+    private Integer type;
 	
 	public User id(long id) {
 		this.id = id;

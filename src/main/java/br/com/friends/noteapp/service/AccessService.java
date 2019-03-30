@@ -8,9 +8,6 @@ import org.springframework.validation.BindingResult;
 import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.persistence.user.User;
-import br.com.friends.noteapp.validator.AbstractFactoryValidator;
-import br.com.friends.noteapp.validator.FactoryValidatorProducer;
-import br.com.friends.noteapp.validator.user.factory.UserValidator;
 
 @Service
 public class AccessService extends FacadeService{
@@ -44,13 +41,7 @@ public class AccessService extends FacadeService{
 
 	public boolean registration(User userForm, BindingResult bindingResult) {   	
     	
-    	AbstractFactoryValidator abstractValidator = FactoryValidatorProducer.getFactory("USER");
-		
-		UserValidator validator = abstractValidator.getUserValidator(1);
-		
-		if(validator != null) {
-			validator.validate(userForm, bindingResult);
-		}
+    	getUser().validate(userForm, bindingResult);
 		
 		if (bindingResult.hasErrors()) {
     		return false;

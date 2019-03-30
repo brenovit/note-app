@@ -7,7 +7,7 @@ public class BirthdayValidator implements NoteValidator{
 
 	@Override
 	public String validate(NoteRequest note) {
-		String message = "";
+		String message = null;
 		
 		if(note.getPersonName() == null || 
 				(note.getPersonName() != null && note.getPersonName().isEmpty()))  {

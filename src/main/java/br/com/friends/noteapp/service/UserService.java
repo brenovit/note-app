@@ -6,12 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import br.com.friends.noteapp.bean.user.UserRequest;
 import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.parser.UserParser;
 import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.persistence.user.UserRepository;
+import br.com.friends.noteapp.validator.AbstractFactoryValidator;
+import br.com.friends.noteapp.validator.FactoryValidatorProducer;
+import br.com.friends.noteapp.validator.user.factory.UserValidator;
 
 @Service
 public class UserService extends FacadeService {
@@ -60,4 +64,17 @@ public class UserService extends FacadeService {
 		User entity = userRepository.findByUsername(username);
 		return entity;
     }
+	
+	public String validate(User user, BindingResult bindingResult) {
+		AbstractFactoryValidator abstractValidator = 
+				FactoryValidatorProducer.getFactory("USER");
+		
+		UserValidator validator = abstractValidator.getUserValidator(user.getType());
+		String message = null;
+		if(validator != null) {
+			message = validator.validate(user, bindingResult);
+		}
+		
+		return message;
+	}
 }

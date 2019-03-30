@@ -11,6 +11,8 @@ public class TaskValidator implements NoteValidator{
 		
 		if(note.getTasks() != null && note.getTasks().isEmpty()) {
 			message = "The task list cannot be empty";
+		} if(note.getTasks().size() < 10) {
+			
 		}
 		
 		return message;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
+import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.parser.NoteParser;
 import br.com.friends.noteapp.persistence.note.Note;
 import br.com.friends.noteapp.persistence.note.NoteRepository;
@@ -65,13 +66,19 @@ public class NoteService extends FacadeService{
 
 	public String validate(NoteRequest noteForm) {
 		String message = null;
-		AbstractFactoryValidator abstractValidator = FactoryValidatorProducer.getFactory("NOTE");
+		AbstractFactoryValidator abstractValidator = 
+				FactoryValidatorProducer.getFactory("NOTE");
 		
-		NoteValidator validator = abstractValidator.getNoteValidator(noteForm.getType());	
+		NoteValidator validator = 
+				abstractValidator.getNoteValidator(noteForm.getType());	
 		
 		if(validator != null) {
 			message = validator.validate(noteForm);
 		}		
 		return message;
+	}
+
+	public UserResponse getUserByUsername(String username) {
+		return getUser().getByUsername(username);
 	}	
 }
