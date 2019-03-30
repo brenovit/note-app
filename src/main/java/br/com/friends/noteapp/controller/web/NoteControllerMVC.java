@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -21,12 +22,15 @@ import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.service.NoteService;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Controller
 public class NoteControllerMVC {
 	
 	@Autowired
 	private NoteService service;
+	private String errorMessage;
 	
 	@GetMapping({"/", "/index"})
     public String welcome(Model model, Authentication authentication, HttpSession session) {		
@@ -50,11 +54,14 @@ public class NoteControllerMVC {
     public String create(@ModelAttribute("noteForm") NoteRequest noteForm, Model model) {
 		model.addAttribute("noteTypes", getNoteTypes());		
 		model.addAttribute("colors", getNoteColors());
+		model.addAttribute("message", errorMessage);
+		errorMessage = "";
 		return "note/create-note";
 	}
 	
 	@PostMapping("/note")
-    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, Model model, HttpSession session) {
+    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, HttpResponse response, HttpSession session) {
+		log.info("salvando nota");
 		Long userKey = (Long) session.getAttribute("userKey");
 		Object attribute = session.getAttribute("noteId");		
 		if(attribute != null) {			
@@ -66,7 +73,7 @@ public class NoteControllerMVC {
 		
 		String message = service.validate(noteForm);
 		if(message != null && !message.isEmpty()) {
-			model.addAttribute("message", message);
+			errorMessage = message;
 			return "redirect:/note"; 
 		}
 		

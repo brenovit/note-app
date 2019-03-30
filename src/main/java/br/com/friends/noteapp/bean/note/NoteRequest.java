@@ -18,7 +18,9 @@ public class NoteRequest {
 	private Long userId;
 	private Integer type;
 	private String color;
-	private String personName;	
+	private String personName;
+	private String recipeName;
+	private String taskName;
 	private String gift;
 	private String partyLocation;
 	

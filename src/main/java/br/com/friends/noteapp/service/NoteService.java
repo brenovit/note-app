@@ -1,11 +1,5 @@
 package br.com.friends.noteapp.service;
 
-import static br.com.friends.noteapp.bean.dto.NoteType.BASIC;
-import static br.com.friends.noteapp.bean.dto.NoteType.BIRTHDAY;
-import static br.com.friends.noteapp.bean.dto.NoteType.RECIPE;
-import static br.com.friends.noteapp.bean.dto.NoteType.REMINDER;
-import static br.com.friends.noteapp.bean.dto.NoteType.TASK;
-
 import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
@@ -13,9 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zaxxer.hikari.util.ClockSource.Factory;
-
-import br.com.friends.noteapp.bean.dto.NoteType;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.parser.NoteParser;
@@ -23,12 +14,6 @@ import br.com.friends.noteapp.persistence.note.Note;
 import br.com.friends.noteapp.persistence.note.NoteRepository;
 import br.com.friends.noteapp.validator.AbstractFactoryValidator;
 import br.com.friends.noteapp.validator.FactoryValidatorProducer;
-import br.com.friends.noteapp.validator.note.BasicValidator;
-import br.com.friends.noteapp.validator.note.BirthdayValidator;
-import br.com.friends.noteapp.validator.note.RecipeValidator;
-import br.com.friends.noteapp.validator.note.ReminderValidator;
-import br.com.friends.noteapp.validator.note.TaskValidator;
-import br.com.friends.noteapp.validator.note.factory.NoteFactoryValidator;
 import br.com.friends.noteapp.validator.note.factory.NoteValidator;
 import lombok.SneakyThrows;
 

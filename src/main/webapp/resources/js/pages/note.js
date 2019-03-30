@@ -16,7 +16,7 @@ $(function () {
         count.innerHTML = 255 - this.value.length;
     });
 
-    $('#noteTypeSelect').on('change', function(){
+    $('#note-type').on('change', function(){
         var noteType = this.value;
 
         $('.noteType').removeClass('hide');
@@ -24,7 +24,7 @@ $(function () {
         $("#noteType_"+noteType).removeClass('hide');
     });
 
-    noteTypeSelectElement = document.getElementById('noteTypeSelect');
+    noteTypeSelectElement = document.getElementById('note-type');
     
     if(noteTypeSelectElement.value != undefined){
         $("#noteType_"+noteTypeSelectElement.value).removeClass('hide');

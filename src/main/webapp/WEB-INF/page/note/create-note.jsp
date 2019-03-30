@@ -145,7 +145,7 @@
 											<div class="form-group form-float">
 												<div class="form-line">												
 													<form:textarea path="body" required="true" name="body" rows="1" maxlength="255"
-													class="form-control no-resize auto-growth" id="note-body" value="${ note.body }" onkeyup="countChar(this)"/>
+													class="form-control no-resize auto-growth" id="note-body" value="${ note.body }"/>
 													<label class="form-label">Body</label>
 												</div>
 												<label id="note-body-label"></label>
@@ -155,8 +155,8 @@
 									<spring:bind path="color">
 										<div class="col-sm-12">
 											<div class="form-group">
-												<label for="select_color">Color</label>
-												<form:select class="form-control show-tick" path="color" id="select_color">													
+												<label for="note-color">Color</label>
+												<form:select class="form-control show-tick" path="color" id="note-color">													
 													<c:forEach items="${ colors }" var="cl">
 														<c:choose>
 		            										<c:when test="${cl.value eq note.color}">
@@ -174,7 +174,8 @@
 									<spring:bind path="type">
 	                                	<div class="col-sm-12">
 											<div class="form-group">
-												<form:select class="form-control show-tick" path="type" id="noteTypeSelect" disabled="${note.type != null ? true : false}">												 	
+												<label for="note-type">Type</label>
+												<form:select class="form-control show-tick" path="type" id="note-type" disabled="${note.type != null ? true : false}">												 	
 													<form:option value="" label="-- Please select the type--" />
 													<c:forEach items="${ noteTypes }" var="nt">
 														<c:choose>
@@ -185,56 +186,61 @@
 		            											<form:option value="${ nt.value }" label="${ nt.name }" />		            											
 	    	        										</c:otherwise>
 	            										</c:choose>
-														
 													</c:forEach>
 												</form:select>
 											</div>
 										</div>
 									</spring:bind>
 									<div id="noteType_1" class="noteType hide">
-										<div class="col-sm-12">                                    
-											<div class="form-group form-float">
-												<div class="form-line">
-													<form:input path="personName" required="false" name="personName" type="text" 
-													class="form-control" id="note-tittle" value="${ note.personName }" />
-													<label class="form-label">Person Name</label>													
-												</div>
-											</div>
-										</div>
-									</div>
-									<div id="noteType_2" class="noteType hide">
-										<div class="col-sm-12">                                    
+										<spring:bind path="personName">
+											<div class="col-sm-12">                                    
 												<div class="form-group form-float">
 													<div class="form-line">
 														<form:input path="personName" required="false" name="personName" type="text" 
-														class="form-control" id="note-tittle" value="${ note.personName }" />
+														class="form-control" id="note-person-name" value="${ note.personName }" />
+														<label class="form-label">Person Name</label>													
+													</div>
+												</div>
+											</div>
+										</spring:bind>
+									</div>
+									<div id="noteType_2" class="noteType hide">
+										<spring:bind path="recipeName">
+											<div class="col-sm-12">                                    
+												<div class="form-group form-float">
+													<div class="form-line">
+														<form:input path="recipeName" required="false" name="recipeName" type="text" 
+														class="form-control" id="note-recipe-name" value="${ note.recipeName }" />
 														<label class="form-label">Recipe Name</label>													
 													</div>
 												</div>
 											</div>
-										</div>
+										</spring:bind>
+									</div>
 									<div id="noteType_3" class="noteType hide">
 										<spring:bind path="time">
 											<div class="col-sm-12">
 												<div class="form-group">
 													<div class="form-line">
 														<form:input path="time" required="false" name="time" type="text" 
-														class="datetimepicker form-control" value="${ note.alertTime }" placeholder="Please choose a date..." />
+														class="datetimepicker form-control" id="note-alert-time" value="${ note.alertTime }" placeholder="Please choose a date..." />
 													</div>
 												</div>
 											</div>
 										</spring:bind>
 									</div>
 									<div id="noteType_4" class="noteType hide">
-									<div class="col-sm-12">                                    
-											<div class="form-group form-float">
-												<div class="form-line">
-													<form:input path="personName" required="false" name="personName" type="text" 
-													class="form-control" id="note-tittle" value="${ note.personName }" />
-													<label class="form-label">Tasks Name</label>													
+										<spring:bind path="taskName">
+											<div class="col-sm-12">                                    
+												<div class="form-group form-float">
+													<div class="form-line">
+														<form:input path="taskName" required="false" name="taskName" type="text" 
+														class="form-control" id="note-task-name" value="${ note.taskName }" />
+														<label class="form-label">Tasks Name</label>													
+													</div>
 												</div>
 											</div>
-										</div>
+										</spring:bind>
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">									
 										<div class="form-group">
@@ -279,7 +285,7 @@
 	
 	<!-- Custom Js -->
 	<script src="${contextPath}/resources/js/admin.js"></script>
-   	<script src="${contextPath}/resources/js/pages/basic-form-elements.js"></script>
+   	<script src="${contextPath}/resources/js/pages/note.js"></script>
 
 	<!-- Demo Js -->
 	<script src="${contextPath}/resources/js/demo.js"></script>
