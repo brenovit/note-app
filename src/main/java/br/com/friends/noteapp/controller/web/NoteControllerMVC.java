@@ -9,6 +9,7 @@ import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +42,7 @@ public class NoteControllerMVC {
 	}
 	
 	@PostMapping("/note")
-    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, HttpSession session) {		
+    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, HttpSession session, BindingResult bindingResult) {		
 		Long userKey = (Long) session.getAttribute(SessionAttribute.USER_KEY.toString());
 		Object attribute = session.getAttribute(SessionAttribute.NOTE_KEY.toString());		
 		if(attribute != null) {

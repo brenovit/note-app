@@ -36,6 +36,7 @@ public class IndexControllerMVC {
 		
 		List<NoteResponse> notes = service.getNotesFromUserId(userKey);
 		model.addAttribute("notes",notes);
+		model.addAttribute("mensagem", "Ola mundo");
         return "index";
 	}	
 }

@@ -74,7 +74,7 @@ public class NoteService extends FacadeService{
 		
 		if(validator != null) {
 			message = validator.validate(noteForm);
-		}		
+		}
 		return message;
 	}
 

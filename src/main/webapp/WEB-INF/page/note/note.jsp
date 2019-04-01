@@ -109,16 +109,17 @@
 		</div>
 	</nav>
 	
-	<c:if test="${ not empty message }">
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-        	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        		<span aria-hidden="true">&times;</span>
-        	</button>
-			${ mensagem }
-		</div>
-	</c:if>
-
 	<section class="content">
+		
+		<c:if test="${ not empty message }">
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		       	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		       		<span aria-hidden="true">&times;</span>
+		       	</button>
+				${ message }
+			</div>
+		</c:if>
+		
 		<div class="container-fluid">
 			<div class="row clearfix">		
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -177,7 +178,6 @@
 											<div class="form-group">
 												<label for="note-type">Type</label>
 												<form:select class="form-control show-tick" path="type" id="note-type" disabled="${note.type != null ? true : false}">												 	
-													<form:option value="" label="-- Please select the type--" />
 													<c:forEach items="${ noteTypes }" var="nt">
 														<c:choose>
 		            										<c:when test="${nt.value eq note.type}">
@@ -196,11 +196,12 @@
 										<div id="noteType_1" class="noteType hide">
 											<div class="col-sm-12">                                    
 												<div class="form-group form-float">
-													<div class="form-line">
+													<div class="form-line ${status.error ? 'error' : ''}">
 														<form:input path="personName" type="text" 
 														class="form-control" id="note-person-name" value="${ note.personName }" />
 														<label class="form-label">Person Name</label>													
 													</div>
+													<form:errors path="personName"></form:errors>
 												</div>
 											</div>
 										</div>
