@@ -1,6 +1,5 @@
 package br.com.friends.noteapp.controller.api;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,7 @@ public class NoteController {
 	private NoteService noteService;
 	
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody NoteRequest request) throws ParseException{
+	public ResponseEntity<?> create(@RequestBody NoteRequest request) {
 		NoteResponse response = noteService.save(request);
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}
@@ -39,7 +38,7 @@ public class NoteController {
 	}
 	
 	@GetMapping(path = "/user/{id}" )
-	public ResponseEntity<?> listFromUser(@PathVariable Long id){
+	public ResponseEntity<?> listFromUserId(@PathVariable Long id){
 		List<NoteResponse> response = noteService.getFromUserId(id);
 		return new ResponseEntity<List<NoteResponse>>(response, HttpStatus.OK);
 	}
@@ -50,7 +49,7 @@ public class NoteController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody NoteRequest request) throws ParseException{
+	public ResponseEntity<?> update(@RequestBody NoteRequest request) {
 		NoteResponse response = noteService.save(request);
 		return new ResponseEntity<NoteResponse>(response, HttpStatus.OK);
 	}

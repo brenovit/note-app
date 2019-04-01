@@ -30,7 +30,7 @@ public class SendNotificationService extends FacadeService{
 				try {
 					getEmailSender().sendMail(note.getTitle(),note.getBody(), user.getEmail());
 					note.setSended(true);
-					getNote().update(note);					
+					getNote().save(note);					
 				} catch (ParseException | MessagingException | UnirestException e) {
 					log.error(e.getMessage(), e);
 				} 

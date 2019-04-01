@@ -39,8 +39,10 @@ public class UserService extends FacadeService {
 	}
 	
 	public User save(User entity) {
-		entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
-		entity.setRoles(new HashSet<>(getRole().findAll()));
+		if(entity.getId() == null || entity.getId() == 0) {
+			entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
+			entity.setRoles(new HashSet<>(getRole().findAll()));			
+		}
 		entity = userRepository.save(entity);
 		return entity;	
 	}
@@ -50,19 +52,20 @@ public class UserService extends FacadeService {
 	}
 
 	public UserResponse update(UserRequest request) {
-		User entity = UserParser.parse(request);
-		entity = userRepository.save(entity);
+		User entity = userRepository.save(UserParser.parse(request));
 		return UserParser.parse(entity);
 	}
 		
-	public UserResponse getByUsername(String username) {		
-		User entity = findByUsername(username);		
-		return UserParser.parse(entity);
+	public UserResponse getByUsername(String username) {
+		return UserParser.parse(findByUsername(username));
     }
 	
-	public User findByUsername(String username) {		
-		User entity = userRepository.findByUsername(username);
-		return entity;
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+    }
+	
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
     }
 	
 	public String validate(User user, BindingResult bindingResult) {

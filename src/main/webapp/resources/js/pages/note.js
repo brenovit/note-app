@@ -8,12 +8,15 @@ $(function () {
         clearButton: true,
         weekStart: 1
     });
-
-    ta = document.getElementById("note-body");
-    count = document.getElementById("note-body-label");
-
-    ta.addEventListener("input", function (e) {
-        count.innerHTML = 255 - this.value.length;
+    
+    $('#note-body-label').html(255 - $('#note-body-textarea').text().length);
+    
+    $("#note-body-textarea").on('change', function(){
+    	$('#note-body-content').value = this.value; 
+    });
+    
+    $('#note-body-textarea').on('input', function () {
+    	$('#note-body-label').html(255 - this.value.length);
     });
 
     $('#note-type').on('change', function(){
@@ -24,7 +27,7 @@ $(function () {
         $("#noteType_"+noteType).removeClass('hide');
     });
 
-    noteTypeSelectElement = document.getElementById('note-type');
+    var noteTypeSelectElement = document.getElementById('note-type');
     
     if(noteTypeSelectElement.value != undefined){
         $("#noteType_"+noteTypeSelectElement.value).removeClass('hide');

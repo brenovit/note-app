@@ -42,11 +42,11 @@ public class NoteService extends FacadeService{
 	@SneakyThrows
 	public NoteResponse save(NoteRequest request) {
 		Note entity = NoteParser.parser(request);
-		entity = update(entity);
+		entity = save(entity);
 		return NoteParser.parse(entity);
 	}
 	
-	public Note update(Note entity) throws ParseException {
+	public Note save(Note entity) throws ParseException {
 		entity = noteRepository.save(entity);
 		return entity;
 	}

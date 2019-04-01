@@ -3,7 +3,9 @@ package br.com.friends.noteapp.parser;
 import br.com.friends.noteapp.bean.user.UserRequest;
 import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.persistence.user.User;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class UserParser {
 	
 	public static UserResponse parse(User entity) {
@@ -19,6 +21,7 @@ public class UserParser {
 	
 	public static User parse(UserRequest request) {
 		User entity = new User();
+		entity.setId(request.getId());
 		entity.setEmail(request.getEmail());
 		entity.setPassword(request.getPassword());
 		entity.setUsername(request.getLogin());

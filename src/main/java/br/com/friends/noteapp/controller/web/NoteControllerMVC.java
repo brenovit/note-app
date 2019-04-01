@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +19,8 @@ import br.com.friends.noteapp.bean.modelview.NoteColorView;
 import br.com.friends.noteapp.bean.modelview.NoteTypeView;
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
-import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.service.NoteService;
+import br.com.friends.noteapp.util.session.SessionAttribute;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -30,42 +29,24 @@ public class NoteControllerMVC {
 	
 	@Autowired
 	private NoteService service;
-	private String errorMessage;
-	
-	@GetMapping({"/", "/index"})
-    public String welcome(Model model, Authentication authentication, HttpSession session) {		
-		Object attribute = session.getAttribute("userKey");
-		Long userKey = 0L;
-		if(attribute == null) {
-			String username = authentication.getName();
-			UserResponse user = service.getUserByUsername(username);
-			session.setAttribute("userKey", user.getId());
-			userKey = user.getId();
-		} else {
-			userKey = (Long) attribute;
-		}		
-		
-		List<NoteResponse> notes = service.getFromUserId(userKey);
-		model.addAttribute("notes",notes);
-        return "index";
-	}
+	private String errorMessage;	
 	
 	@GetMapping("/note")
     public String create(@ModelAttribute("noteForm") NoteRequest noteForm, Model model) {
-		model.addAttribute("noteTypes", getNoteTypes());		
+		model.addAttribute("noteTypes", getNoteTypes());
 		model.addAttribute("colors", getNoteColors());
 		model.addAttribute("message", errorMessage);
 		errorMessage = "";
-		return "note/create-note";
+		return "note/note";
 	}
 	
 	@PostMapping("/note")
-    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, HttpResponse response, HttpSession session) {
-		log.info("salvando nota");
-		Long userKey = (Long) session.getAttribute("userKey");
-		Object attribute = session.getAttribute("noteId");		
-		if(attribute != null) {			
+    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, HttpSession session) {		
+		Long userKey = (Long) session.getAttribute(SessionAttribute.USER_KEY.toString());
+		Object attribute = session.getAttribute(SessionAttribute.NOTE_KEY.toString());		
+		if(attribute != null) {
 			Long noteId = (Long) attribute;
+			log.info(noteId);
 			noteForm.setId(noteId);
 		}
 		
@@ -74,11 +55,44 @@ public class NoteControllerMVC {
 		String message = service.validate(noteForm);
 		if(message != null && !message.isEmpty()) {
 			errorMessage = message;
-			return "redirect:/note"; 
+			return "redirect:/note";
 		}
 		
 		service.save(noteForm);
+		
+		session.removeAttribute(SessionAttribute.NOTE_KEY.toString());
 		return "redirect:/index";
+	}
+	
+	@GetMapping("/note/edit/{noteId}")
+    public String edit(@PathVariable Long noteId, @ModelAttribute("noteForm") NoteRequest noteForm, Model model, HttpSession session) {
+		Long userKey = (Long) session.getAttribute(SessionAttribute.USER_KEY.toString());
+		NoteResponse note = service.get(noteId);
+		
+		if(!userKey.equals(note.getUserId())) {
+			model.addAttribute("message", "That note does note belong to you");
+			return "forward:/index";
+		} 
+		
+		session.setAttribute(SessionAttribute.NOTE_KEY.toString(), noteId);			
+		model.addAttribute("note", note);
+		
+		return "forward:/note";
+	}
+	
+	@GetMapping("/note/delete/{noteId}")
+    public String delete(@PathVariable Long noteId,  Model model, HttpSession session) {
+		Long userKey = (Long) session.getAttribute(SessionAttribute.USER_KEY.toString());
+		
+		NoteResponse note = service.get(noteId);
+		if(!userKey.equals(note.getUserId())) {
+			model.addAttribute("message", "That note does note belong to you");
+		} else {
+			service.delete(noteId);
+			model.addAttribute("message", "Note "+noteId+" deleted");			
+		}
+		
+		return "forward:/index";
 	}
 	
 	private List<NoteTypeView> getNoteTypes(){
@@ -110,27 +124,9 @@ public class NoteControllerMVC {
 		noteTypes.add(new NoteColorView("grey"));
 		noteTypes.add(new NoteColorView("black"));
 		return noteTypes;
-	}
+	}	
 	
 	private NoteTypeView extractType(NoteType noteType) {
 		return new NoteTypeView(noteType.ordinal(), noteType.name());
-	}
-	
-	@GetMapping("/note/edit/{noteId}")
-    public String edit(@PathVariable Long noteId, @ModelAttribute("noteForm") NoteRequest noteForm, Model model, HttpSession session) {
-		//Long userKey = (Long) session.getAttribute("userKey");
-		session.setAttribute("noteId", noteId);
-		NoteResponse note = service.get(noteId);
-		model.addAttribute("note", note);
-		
-		return "forward:/note";
-	}
-	
-	@GetMapping("/note/delete/{noteId}")
-    public String delete(@PathVariable Long noteId,  Model model, HttpSession session) {
-		//Long userKey = (Long) session.getAttribute("userKey");
-		service.delete(noteId);
-		model.addAttribute("message", "Note "+noteId+" deleted");
-		return "forward:/index";
 	}	
 }

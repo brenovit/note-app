@@ -12,7 +12,9 @@ import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
 import br.com.friends.noteapp.persistence.note.Note;
 import br.com.friends.noteapp.persistence.user.User;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class NoteParser {
 	
 	public static NoteResponse parse(Note entity) {
@@ -40,7 +42,9 @@ public class NoteParser {
 		entity.setBody(request.getBody());
 		entity.setColor(request.getColor());
 		entity.setGift(request.getGift());
-		entity.setAlertTime(request.getAlertTime());
+		if(request.getTime() != null && !request.getTime().isEmpty()) {
+			entity.setAlertTime(request.getAlertTime());
+		}
 		entity.setLastModificatedDate(new Date());
 		entity.setPartyLocation(request.getPartyLocation());
 		entity.setPersonName(request.getPersonName());
@@ -66,8 +70,7 @@ public class NoteParser {
 		return null;
 	}
 
-	public static List<NoteResponse> parse(List<Note> notes) {
-		List<NoteResponse> notesResponse = notes.stream().map(n -> parse(n)).collect(Collectors.toList());
-		return notesResponse;
-	}
+	public static List<NoteResponse> parse(List<Note> notes) {		
+		return notes.stream().map(n -> parse(n)).collect(Collectors.toList());
+	}	
 }

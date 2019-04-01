@@ -14,6 +14,7 @@ import br.com.friends.noteapp.bean.dto.PasswordChange;
 import br.com.friends.noteapp.bean.user.UserResponse;
 import br.com.friends.noteapp.persistence.user.User;
 import br.com.friends.noteapp.service.UserService;
+import br.com.friends.noteapp.util.session.SessionAttribute;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -26,7 +27,7 @@ public class UserControllerMVC {
 	@GetMapping("/settings")
     public String settings(@ModelAttribute("userForm") User userForm, @ModelAttribute("passForm") PasswordChange passForm, Model model, HttpSession session) {
 		log.info("Get settings");
-		Object attribute = session.getAttribute("userKey");
+		Object attribute = session.getAttribute(SessionAttribute.USER_KEY.toString());
 		Long userKey = (Long) attribute;
 		
 		UserResponse user = service.getById(userKey);		

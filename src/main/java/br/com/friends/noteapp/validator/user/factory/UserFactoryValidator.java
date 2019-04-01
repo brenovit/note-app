@@ -13,10 +13,10 @@ public class UserFactoryValidator extends AbstractFactoryValidator{
 			return null;
 		}
 		
-		if(userType == 1) {
-			return new NormalUserValidator();
-		} else if(userType == 0) {
+		if(userType == 0) {
 			return new AdminUserValidator();
+		} else if(userType == 1) {
+			return new NormalUserValidator();
 		}
 		
 		return null;

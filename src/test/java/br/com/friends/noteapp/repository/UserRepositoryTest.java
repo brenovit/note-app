@@ -20,7 +20,7 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void test() {
-		User user = repository.save(new User(1L,"Breno Nunes", "brenovit", "breno.arantes97@gmail.com","Breno.png", "12345", "12345",null, 1));
+		User user = repository.save(new User(1L,"Breno Nunes", "brenovit", "breno.arantes97@gmail.com", "5571987654321","Breno.png", "12345", "12345",null, 1));
 
 		assertThat(user).isNotNull();
 		assertThat(repository.count()).isEqualTo(1L);

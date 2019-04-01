@@ -143,9 +143,10 @@
 									<spring:bind path="body">
 										<div class="col-sm-12">
 											<div class="form-group form-float">
-												<div class="form-line">												
-													<form:textarea path="body" required="true" name="body" rows="1" maxlength="255"
-													class="form-control no-resize auto-growth" id="note-body" value="${ note.body }"/>
+												<div class="form-line">
+													<form:input path="body" name="title" type="hidden" id="note-body-content" />
+													<textarea name="body" rows="1" maxlength="255"
+														class="form-control no-resize auto-growth" id="note-body-textarea">${ note.body }</textarea>
 													<label class="form-label">Body</label>
 												</div>
 												<label id="note-body-label"></label>
@@ -191,57 +192,58 @@
 											</div>
 										</div>
 									</spring:bind>
-									<div id="noteType_1" class="noteType hide">
-										<spring:bind path="personName">
+									<spring:bind path="personName">
+										<div id="noteType_1" class="noteType hide">
 											<div class="col-sm-12">                                    
 												<div class="form-group form-float">
 													<div class="form-line">
-														<form:input path="personName" required="false" name="personName" type="text" 
+														<form:input path="personName" type="text" 
 														class="form-control" id="note-person-name" value="${ note.personName }" />
 														<label class="form-label">Person Name</label>													
 													</div>
 												</div>
 											</div>
-										</spring:bind>
-									</div>
-									<div id="noteType_2" class="noteType hide">
-										<spring:bind path="recipeName">
+										</div>
+									</spring:bind>
+									<spring:bind path="recipeName">
+										<div id="noteType_2" class="noteType hide">
 											<div class="col-sm-12">                                    
 												<div class="form-group form-float">
 													<div class="form-line">
-														<form:input path="recipeName" required="false" name="recipeName" type="text" 
+														<form:input path="recipeName" type="text" 
 														class="form-control" id="note-recipe-name" value="${ note.recipeName }" />
 														<label class="form-label">Recipe Name</label>													
 													</div>
 												</div>
 											</div>
-										</spring:bind>
-									</div>
-									<div id="noteType_3" class="noteType hide">
-										<spring:bind path="time">
+										</div>
+									</spring:bind>
+									<spring:bind path="time">
+										<div id="noteType_3" class="noteType hide">
 											<div class="col-sm-12">
 												<div class="form-group">
 													<div class="form-line">
-														<form:input path="time" required="false" name="time" type="text" 
-														class="datetimepicker form-control" id="note-alert-time" value="${ note.alertTime }" placeholder="Please choose a date..." />
+														<form:input path="time" type="text" 
+														class="datetimepicker form-control" id="note-alert-time" value="${ note.alertTime }" 
+														placeholder="Please choose a date..." />
 													</div>
 												</div>
 											</div>
-										</spring:bind>
-									</div>
-									<div id="noteType_4" class="noteType hide">
-										<spring:bind path="taskName">
+										</div>
+									</spring:bind>
+									<spring:bind path="taskName">
+										<div id="noteType_4" class="noteType hide">
 											<div class="col-sm-12">                                    
 												<div class="form-group form-float">
 													<div class="form-line">
-														<form:input path="taskName" required="false" name="taskName" type="text" 
+														<form:input path="taskName" type="text" 
 														class="form-control" id="note-task-name" value="${ note.taskName }" />
 														<label class="form-label">Tasks Name</label>													
 													</div>
 												</div>
 											</div>
-										</spring:bind>
-									</div>
+										</div>
+									</spring:bind>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">									
 										<div class="form-group">
 											<button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>

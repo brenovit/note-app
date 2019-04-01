@@ -49,18 +49,20 @@
 		<div class="card">
 			<div class="body">
 				<form:form method="POST" modelAttribute="userForm"
-					class="form-signin" id="sign_up">
+					class="form-signin demo-masked-input" id="sign_up">
 					<div class="msg">Register a new membership</div>
-					
+					<spring:bind path="type">
+						<form:input type="hidden" path="type" value="1"/>
+					</spring:bind>
 					<spring:bind path="name">
-						<div class="input-group ${status.error ? 'has-error' : ''}">
+						<div class="input-group">
 							<span class="input-group-addon"> <i class="material-icons">person</i>
 							</span>
-							<div class="form-line">
+							<div class="form-line ${status.error ? 'error' : ''}">
 								<form:input type="text" path="name" class="form-control"
 									placeholder="Name" autofocus="true" required="true"></form:input>
-								<form:errors path="name"></form:errors>
 							</div>
+							<form:errors path="name"></form:errors>
 						</div>
 					</spring:bind>
 					
@@ -68,7 +70,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"> <i class="material-icons">email</i>
 							</span>
-							<div class="form-line">
+							<div class="form-line ${status.error ? 'error' : ''}">
 								<form:input type="email" path="email" class="form-control"
 									name="email" placeholder="Email Address" required="true"></form:input>
 							</div>
@@ -76,23 +78,36 @@
 						</div>
 					</spring:bind>
 					
+					
+					<spring:bind path="phoneNumber">
+						<div class="input-group">
+						    <span class="input-group-addon">
+						        <i class="material-icons">phone_iphone</i>
+						    </span>
+						    <div class="form-line">
+						        <form:input type="text" path="phoneNumber" 
+						        class="form-control mobile-phone-number" placeholder="Ex: +00(00)90000-0000"></form:input>
+						    </div>
+						</div>
+					</spring:bind>
+					
 					<spring:bind path="username">
-						<div class="input-group ${status.error ? 'has-error' : ''}">
+						<div class="input-group">
 							<span class="input-group-addon"> <i class="material-icons">account_box</i>
 							</span>
-							<div class="form-line">
+							<div class="form-line ${status.error ? 'error' : ''}">
 								<form:input type="text" path="username" class="form-control"
 									placeholder="Username" autofocus="true" required="true"></form:input>
-								<form:errors path="username"></form:errors>
 							</div>
+							<form:errors class="error" path="username"></form:errors>
 						</div>
 					</spring:bind>
 										
 					<spring:bind path="password">
-						<div class="input-group ${status.error ? 'has-error' : ''}">
+						<div class="input-group">
 							<span class="input-group-addon"> <i class="material-icons">lock</i>
 							</span>
-							<div class="form-line">
+							<div class="form-line ${status.error ? 'error' : ''}">
 								<form:input type="password" path="password" class="form-control"
 									name="password" minlength="6" placeholder="Password" required="true"></form:input>
 							</div>
@@ -101,10 +116,10 @@
 					</spring:bind>
 
 					<spring:bind path="passwordConfirm">
-						<div class="input-group ${status.error ? 'has-error' : ''}">
+						<div class="input-group">
 							<span class="input-group-addon"> <i class="material-icons">lock</i>
 							</span>
-							<div class="form-line">
+							<div class="form-line ${status.error ? 'error' : ''}">
 								<form:input type="password" path="passwordConfirm"
 									class="form-control" placeholder="Confirm your password"
 									required="true"></form:input>
@@ -112,7 +127,7 @@
 							<form:errors path="passwordConfirm"></form:errors>
 						</div>
 					</spring:bind>
-
+					
 					<div class="form-group">
 						<input type="checkbox" name="terms" id="terms"
 							class="filled-in chk-col-pink" required> <label
@@ -145,7 +160,9 @@
 	<!-- Validation Plugin Js -->
 	<script
 		src="${contextPath}/resources/plugins/jquery-validation/jquery.validate.js"></script>
-
+	<!-- Input Mask Plugin Js -->
+    <script src="${contextPath}/resources/plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+    
 	<!-- Custom Js -->
 	<script src="${contextPath}/resources/js/admin.js"></script>
 	<script src="${contextPath}/resources/js/pages/sign-up.js"></script>

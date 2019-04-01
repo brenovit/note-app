@@ -47,6 +47,10 @@ public class NoteRequest {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		return sdf.parse(time);
 	}
+	
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
 	public void setType(NoteType noteType) {
 		this.type = noteType.ordinal();		

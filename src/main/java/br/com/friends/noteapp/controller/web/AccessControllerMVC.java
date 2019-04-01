@@ -26,7 +26,7 @@ public class AccessControllerMVC {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {    	
     	if(accessService.registration(userForm, bindingResult)) {
     		return "redirect:/index";
         }
@@ -36,9 +36,9 @@ public class AccessControllerMVC {
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout, HttpSession session) {
-        if (error != null)
+        if (error != null) {
             model.addAttribute("error", "Your username and password is invalid.");
-
+        }
         if (logout != null) {
             model.addAttribute("message", "You have been logged out successfully.");
             session.invalidate();
