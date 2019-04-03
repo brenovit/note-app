@@ -80,5 +80,9 @@ public class NoteService extends FacadeService{
 
 	public UserResponse getUserByUsername(String username) {
 		return getUser().getByUsername(username);
+	}
+
+	public List<NoteResponse> getNotesFromUserId(Long userKey) {
+		return getNote().getFromUserId(userKey);
 	}	
 }

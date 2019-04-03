@@ -24,6 +24,4 @@ public class FacadeService {
 	private SendNotificationService notification;	
 	@Autowired
 	private RoleService role;
-	@Autowired
-	private IndexService index;
 }
