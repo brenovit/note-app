@@ -76,10 +76,12 @@
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="${contextPath}/">
-					<img src="${contextPath}/resources/logo-via-logohub.png"
-						alt="Nota Aqui" width="25%" />
-				</a>
+				<div class="m-t--5">
+					<a class="navbar-brand" href="${contextPath}/">
+						<img src="${contextPath}/resources/logo-via-logohub.png"
+							alt="Nota Aqui" style="width:200px" />
+					</a>
+				</div>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -99,16 +101,15 @@
 				</ul>					
 			</div>
 		</div>
-	</nav>
-	
-	<c:if test="${ not empty message }">
-		<div class="alert alert-info alert-dismissible" role="alert">
-		 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-             ${ message }
-		</div>
-	</c:if>
+	</nav>	
 	
 	<section class="content">		
+		<c:if test="${ not empty message }">
+			<div class="alert alert-info alert-dismissible" role="alert">
+			 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	             ${ message }
+			</div>
+		</c:if>
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<c:forEach items="${ notes }" var="note">

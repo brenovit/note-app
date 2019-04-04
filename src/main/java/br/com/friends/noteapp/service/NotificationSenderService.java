@@ -12,17 +12,17 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import br.com.friends.noteapp.bean.email.EmailRequest;
+import br.com.friends.noteapp.bean.email.NotificationRequest;
 import lombok.extern.log4j.Log4j2;
 
 @Service
 @Log4j2
-public class EmailSenderService {
+public class NotificationSenderService {
 
 	@Value("${sendmail.url}")
 	private String url;
 
-	public void sendMail(EmailRequest request) throws MessagingException, UnirestException {
+	public void sendNotification(NotificationRequest request) throws MessagingException, UnirestException {
 		JSONObject email = new JSONObject(request);
 
 		log.debug("Message JSON: {}", email.toString());
@@ -37,7 +37,7 @@ public class EmailSenderService {
 		}
 	}
 
-	public void sendMail(String subject, String body, String to) throws MessagingException, UnirestException {
-		sendMail(new EmailRequest(subject, body, to));
+	public void sendNotification(String subject, String message, String email, String number) throws MessagingException, UnirestException {
+		sendNotification(new NotificationRequest(subject, message, email, number));
 	}
 }

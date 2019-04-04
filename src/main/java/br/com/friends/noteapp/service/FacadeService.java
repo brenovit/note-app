@@ -13,7 +13,7 @@ import lombok.Getter;
 public class FacadeService {
 	
 	@Autowired
-	private EmailSenderService emailSender;
+	private NotificationSenderService notificationSender;
 	@Autowired
 	private JobService job;
 	@Autowired

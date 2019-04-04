@@ -12,14 +12,14 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @RunWith(SpringRunner.class)
-public class EmailSenderServiceTest {
+public class NotificationSenderServiceTest {
 	
-	private EmailSenderService service = new EmailSenderService();
+	private NotificationSenderService service = new NotificationSenderService();
 	
 	@Test
 	public void testSendMail() {
 		try {
-			service.sendMail("Teste", "Mensagem", "breno.arantes97@gmail.com");
+			service.sendNotification("Teste", "Mensagem", "breno.arantes97@gmail.com", "+557199999999");
 		} catch (MessagingException | UnirestException e) {
 			log.error(e.getMessage(), e);
 		}

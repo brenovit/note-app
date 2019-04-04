@@ -28,7 +28,7 @@ public class SendNotificationService extends FacadeService{
 			if(alertDt.equals(actualDt)) {				
 				User user = note.getUser();
 				try {
-					getEmailSender().sendMail(note.getTitle(),note.getBody(), user.getEmail());
+					getNotificationSender().sendNotification(note.getTitle(),note.getBody(), user.getEmail(), user.getPhoneNumber());
 					note.setSended(true);
 					getNote().save(note);					
 				} catch (ParseException | MessagingException | UnirestException e) {

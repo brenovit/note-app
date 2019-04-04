@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmailRequest {	
+public class NotificationRequest {	
 	private String subject;
 	private String message;
-	private String to;
+	private String email;
+	private String number;
 }

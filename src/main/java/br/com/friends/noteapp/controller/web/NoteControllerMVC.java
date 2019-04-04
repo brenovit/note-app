@@ -48,7 +48,7 @@ public class NoteControllerMVC {
 		
 		List<NoteResponse> notes = service.getNotesFromUserId(userKey);
 		model.addAttribute("notes",notes);
-		model.addAttribute("message", "Ola mundo");
+		model.addAttribute("message", message);
 		message = "";
         return "index";
 	}
@@ -80,7 +80,7 @@ public class NoteControllerMVC {
 	
 	
 	@PostMapping("/note")
-    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, HttpSession session, BindingResult bindingResult) {		
+    public String save(@ModelAttribute("noteForm") NoteRequest noteForm, Model model, HttpSession session, BindingResult bindingResult) {		
 		Long userKey = (Long) session.getAttribute(SessionAttribute.USER_KEY.toString());
 		Object attribute = session.getAttribute(SessionAttribute.NOTE_KEY.toString());		
 		if(attribute != null) {
@@ -91,10 +91,10 @@ public class NoteControllerMVC {
 		
 		noteForm.setUserId(userKey);
 		
-		String validationMessage = service.validate(noteForm);
+		String validationMessage = service.validate(noteForm,bindingResult);
 		if(validationMessage != null && !validationMessage.isEmpty()) {
 			message = validationMessage;
-			return "redirect:/note";
+			return create(noteForm, model);
 		}
 		
 		service.save(noteForm);
@@ -122,9 +122,9 @@ public class NoteControllerMVC {
 		List<NoteTypeView> noteTypes = new ArrayList<NoteTypeView>();
 		noteTypes.add(extractType(NoteType.BASIC));
 		noteTypes.add(extractType(NoteType.BIRTHDAY));
-		noteTypes.add(extractType(NoteType.RECIPE));
+		//noteTypes.add(extractType(NoteType.RECIPE));
 		noteTypes.add(extractType(NoteType.REMINDER));
-		noteTypes.add(extractType(NoteType.TASK));		
+		//noteTypes.add(extractType(NoteType.TASK));		
 		return noteTypes;
 	}
 	

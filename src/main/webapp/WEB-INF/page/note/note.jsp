@@ -84,10 +84,12 @@
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="${contextPath}/">
-					<img src="${contextPath}/resources/logo-via-logohub.png"
-						alt="Nota Aqui" width="25%" />
-				</a>
+				<div class="m-t--5">
+					<a class="navbar-brand" href="${contextPath}/">
+						<img src="${contextPath}/resources/logo-via-logohub.png"
+							alt="Nota Aqui" style="width:200px" />
+					</a>
+				</div>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -108,15 +110,16 @@
 			</div>
 		</div>
 	</nav>
-	
-	<c:if test="${ not empty message }">
-		<div class="alert alert-info alert-dismissible" role="alert">
-		 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-             ${ message }
-		</div>
-	</c:if>
-	
+		
 	<section class="content">
+		
+		<c:if test="${ not empty message }">
+			<div class="alert alert-info alert-dismissible" role="alert">
+			 	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	             ${ message }
+			</div>
+		</c:if>
+	
 		<div class="container-fluid">
 			<div class="row clearfix">		
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -142,7 +145,7 @@
 										<div class="col-sm-12">
 											<div class="form-group form-float">
 												<div class="form-line">
-													<form:input path="body" name="title" type="hidden" id="note-body-content" />
+													<form:input path="body" name="body" type="hidden" id="note-body-content" />
 													<textarea name="body" rows="1" maxlength="255"
 														class="form-control no-resize auto-growth" id="note-body-textarea">${ note.body }</textarea>
 													<label class="form-label">Body</label>
@@ -174,14 +177,16 @@
 	                                	<div class="col-sm-12">
 											<div class="form-group">
 												<label for="note-type">Type</label>
-												<form:select class="form-control show-tick" path="type" id="note-type" disabled="${note.type != null ? true : false}">												 	
+												<form:select class="form-control show-tick" path="type" id="note-type">												 	
 													<c:forEach items="${ noteTypes }" var="nt">
 														<c:choose>
 		            										<c:when test="${nt.value eq note.type}">
 		            											<form:option value="${ nt.value }" label="${ nt.name }" selected="true"/>
-		            										</c:when>
+		            										</c:when>		            										
 		            										<c:otherwise>
-		            											<form:option value="${ nt.value }" label="${ nt.name }" />		            											
+		            											<c:if test="${note.type == null}">		            											
+		            												<form:option value="${ nt.value }" label="${ nt.name }" />
+		            											</c:if>		            											
 	    	        										</c:otherwise>
 	            										</c:choose>
 													</c:forEach>
@@ -198,19 +203,19 @@
 														class="form-control" id="note-person-name" value="${ note.personName }" />
 														<label class="form-label">Person Name</label>													
 													</div>
-													<form:errors path="personName"></form:errors>
+													<form:errors class="error" path="personName"></form:errors>
 												</div>
 											</div>
 										</div>
 									</spring:bind>
 									<spring:bind path="recipeName">
-										<div id="noteType_2" class="noteType hide">
+										<div id="noteType_1" class="noteType hide">
 											<div class="col-sm-12">                                    
 												<div class="form-group form-float">
 													<div class="form-line">
 														<form:input path="recipeName" type="text" 
 														class="form-control" id="note-recipe-name" value="${ note.recipeName }" />
-														<label class="form-label">Recipe Name</label>													
+														<label class="form-label">Recipe Name</label>
 													</div>
 												</div>
 											</div>
@@ -220,11 +225,12 @@
 										<div id="noteType_3" class="noteType hide">
 											<div class="col-sm-12">
 												<div class="form-group">
-													<div class="form-line">
+													<div class="form-line ${status.error ? 'error' : ''}">
 														<form:input path="time" type="text" 
 														class="datetimepicker form-control" id="note-alert-time" value="${ note.alertTime }" 
 														placeholder="Please choose a date..." />
 													</div>
+													<form:errors class="error" path="time"></form:errors>
 												</div>
 											</div>
 										</div>

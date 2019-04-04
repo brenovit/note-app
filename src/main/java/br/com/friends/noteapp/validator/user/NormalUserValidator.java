@@ -21,31 +21,41 @@ public class NormalUserValidator implements UserValidator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");      
 		
 		if (service.findByEmail(user.getEmail()) != null) {
-            errors.rejectValue("email", "Duplicate.userForm.email");
-            message = bundle.getMessage("Duplicate.userForm.email", null, LocaleContextHolder.getLocale());
+			setError(errors,"email", "Duplicate.userForm.email");
+            message = getBundleMessage(bundle,"Duplicate.userForm.email");
         }
 		
         if (service.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
-            message = bundle.getMessage("Duplicate.userForm.username", null, LocaleContextHolder.getLocale());
+            setError(errors,"username", "Duplicate.userForm.username");
+            message = getBundleMessage(bundle,"Duplicate.userForm.username");
         }       
 
         if (user.getUsername().length() < 5 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
-            message = bundle.getMessage("Size.userForm.username", null, LocaleContextHolder.getLocale());
+            setError(errors,"username", "Size.userForm.username");
+            message = getBundleMessage(bundle,"Size.userForm.username");
         }
         
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
         if (user.getPassword().length() < 2 || user.getPassword().length() > 32) {
-            errors.rejectValue("password",  "Size.userForm.password");
-            message = bundle.getMessage("Size.userForm.password", null, LocaleContextHolder.getLocale());
+            setError(errors,"password", "Size.userForm.password");
+            message = getBundleMessage(bundle,"Size.userForm.password");
         }
 
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
-            message = bundle.getMessage("Diff.userForm.passwordConfirm", null, LocaleContextHolder.getLocale());
+            setError(errors,"passwordConfirm", "Diff.userForm.passwordConfirm");
+            message = getBundleMessage(bundle,"Diff.userForm.passwordConfirm");
         }
         
         return message;
+	}
+	
+	private void setError(Errors errors, String field, String errorCode) {
+		if(errors != null) {
+			errors.rejectValue(field,errorCode);
+		}
+	}
+	
+	private String getBundleMessage(MessageSource bundle, String code) {
+		return bundle.getMessage(code, null, LocaleContextHolder.getLocale());
 	}
 }

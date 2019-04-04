@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import br.com.friends.noteapp.bean.note.NoteRequest;
 import br.com.friends.noteapp.bean.note.NoteResponse;
@@ -63,8 +64,8 @@ public class NoteService extends FacadeService{
 		List<Note> notes = noteRepository.findByUserUsername(username);
 		return NoteParser.parse(notes);
 	}
-
-	public String validate(NoteRequest noteForm) {
+	
+	public String validate(NoteRequest noteForm, BindingResult bindingResult) {
 		String message = null;
 		AbstractFactoryValidator abstractValidator = 
 				FactoryValidatorProducer.getFactory("NOTE");
@@ -73,9 +74,13 @@ public class NoteService extends FacadeService{
 				abstractValidator.getNoteValidator(noteForm.getType());	
 		
 		if(validator != null) {
-			message = validator.validate(noteForm);
+			message = validator.validate(noteForm, bindingResult);
 		}
 		return message;
+	}
+
+	public String validate(NoteRequest noteForm) {
+		return validate(noteForm, null);
 	}
 
 	public UserResponse getUserByUsername(String username) {
