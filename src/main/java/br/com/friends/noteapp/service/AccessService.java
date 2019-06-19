@@ -16,9 +16,13 @@ public class AccessService extends FacadeService{
     private SecurityService security;
    
 
-	public User save(User entity) {
+	private User save(User entity) {
 		User user = getUser().save(entity);
-		
+		createFirstNote(user.getId());
+		return user;
+	}
+	
+	private void createFirstNote(Long userId) {
 		NoteRequest request = new NoteRequest();
 		request.setTitle("Primeira Nota");
 		request.setBody("Bem-Vindo ao NotaAqui"
@@ -29,13 +33,12 @@ public class AccessService extends FacadeService{
 		request.setTime(new DateTime().toString("dd/MM/yyyy HH:mm"));
 		request.setType(NoteType.BASIC);
 		request.setColor("yellow");
-		request.setUserId(user.getId());
+		request.setUserId(userId);
 		getNote().save(request);
-		
-		return user;
 	}
+	
 
-	public void autoLogin(String username, String password) {
+	private void autoLogin(String username, String password) {
 		security.autoLogin(username, password);
 	}
 
