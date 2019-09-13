@@ -1,5 +1,6 @@
 package br.com.friends.noteapp.service;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -28,10 +29,10 @@ public class SendNotificationService extends FacadeService{
 			if(alertDt.equals(actualDt)) {				
 				User user = note.getUser();
 				try {
-					getNotificationSender().sendNotification(note.getTitle(),note.getBody(), user.getEmail(), user.getPhoneNumber());
+					getNotificationSender().sendNotificationUnirest(note.getTitle(),note.getBody(), user.getEmail(), user.getPhoneNumber());
 					note.setSended(true);
 					getNote().save(note);					
-				} catch (ParseException | MessagingException | UnirestException e) {
+				} catch (ParseException | MessagingException | UnirestException | IOException e) {
 					log.error(e.getMessage(), e);
 				} 
 			}			
